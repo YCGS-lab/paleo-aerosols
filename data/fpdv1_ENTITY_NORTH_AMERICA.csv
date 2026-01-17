@@ -1,0 +1,524 @@
+entity_id,entity_name,lat_dd_north,lon_dd_east,elev_m,hemisphere,depo_context,eco_id,chron_code,geo_id
+1,Cygnet core,44.66,-110.61,2530,north,sedlac,1,RPD_orig,227
+4,Slough Creek Pond core,44.91,-110.34,1884,north,sedlac,1,RPD_orig,227
+5,Burnt Knob core,45.7,-114.98,2250,north,sedlac,1,RPD_orig,227
+6,Baker core,45.891785,-114.263047,2300,north,sedlac,1,RPD_orig,227
+7,Hoodoo core,46.320193,-114.651545,1770,north,sedlac,1,RPD_orig,227
+9,Pintlar core,45.84,-113.44,1921,north,sedlac,1,RPD_orig,227
+13,Bolan core,41.0225,-122.4583,1637,north,sedlac,2,RPD_orig,227
+15,Bluff core,41.346415,-122.55995,1921,north,sedlac,2,RPD_orig,227
+16,Cedar core,41.207395,-122.496677,1740,north,sedlac,2,RPD_orig,227
+19,Crater Lake CA core,41.3836,-122.5797,2288,north,sedlac,2,RPD_orig,227
+21,Mumbo core,41.191147,-122.510445,1860,north,sedlac,2,RPD_orig,227
+23,Trail core,44.28,-110.17,2362,north,sedlac,1,RPD_orig,227
+25,Lost Lake core,45.822988,-123.579517,449,north,sedlac,3,RPD_orig,227
+29,Beach Lake core,65.216667,-127.05,81,north,sedlac,5,RPD_orig,36
+37,Como core,37.55,-105.5,3523,north,sedlac,6,RPD_orig,227
+38,Crane core,36.71,-112.21,2590,north,sedlac,7,RPD_orig,227
+39,Excelsior Basin core_14_24,52.783333,-117.116667,2631,north,sedlac,8,RPD_orig,36
+40,Excelsior Basin core_gtr24,52.783333,-117.116667,2631,north,sedlac,8,RPD_orig,36
+41,Forest Pond 1 core,43.47,-109.93,2797,north,sedlac,1,RPD_orig,227
+42,Forest Pond 2 core,43.43,-109.95,2766,north,sedlac,1,RPD_orig,227
+43,Frying Pan core,38.61,-111.66,2720,north,sedlac,9,RPD_orig,227
+44,Head core,37.69,-105.73,2294,north,sedlac,6,RPD_orig,227
+45,Howes Prairie Marsh core,41.65,-87.07,185,north,sedlac,10,RPD_orig,227
+46,Maligne Lake core_gtr24,52.708479,-117.608897,1675,north,sedlac,8,RPD_orig,36
+47,Maligne Lake core_14_24,52.708479,-117.608897,1675,north,sedlac,8,RPD_orig,36
+48,Montezuma Well core,34,-112,1125,north,sedlac,11,RPD_orig,227
+49,Ninisith Lake core 4,59.58,-113,225,north,sedlac,12,RPD_orig,36
+50,Ninisith Lake core 1,59.58,-113,225,north,sedlac,12,RPD_orig,36
+51,Ninisith Lake core 3,59.58,-113,225,north,sedlac,12,RPD_orig,36
+52,Ninisith Lake core 2,59.58,-113,225,north,sedlac,12,RPD_orig,36
+53,Ninisith Lake core 5,59.58,-113,225,north,sedlac,12,RPD_orig,36
+54,Park Pond 1 core,43.46,-109.95,2705,north,sedlac,1,RPD_orig,227
+55,Park Pond 2 core,43.45,-109.94,2714,north,sedlac,1,RPD_orig,227
+56,Park Pond 3 core,43.45,-109.92,2739,north,sedlac,1,RPD_orig,227
+57,Posy Lake core,37.95,-111.7,2653,north,sedlac,7,RPD_orig,227
+58,San Joaquin Marsh core,33.65,-117.85,2,north,sedlac,13,RPD_orig,227
+60,Tonquin Creek TC1 core_14_24,52.73,-118.36,1935,north,sedlac,8,RPD_orig,36
+61,Tonquin Creek TC1 core_gtr24,52.73,-118.36,1935,north,sedlac,8,RPD_orig,36
+62,Wilcox Pass core 12-20,52.24,-117.21,2355,north,sedlac,8,RPD_orig,36
+63,Wilcox Pass core gtr30,52.24,-117.21,2355,north,sedlac,8,RPD_orig,36
+64,Dog Lake core,50.76,-116.1,1183,north,sedlac,8,RPD_orig,36
+67,Martins core,47.71,-123.54,1415,north,sedlac,3,RPD_orig,227
+68,Moose core,47.88,-123.35,1508,north,sedlac,3,RPD_orig,227
+129,Chihuahuenos Bog core,36.04,-106.5,2925,north,sedlac,6,RPD_orig,227
+133,Lac Francis core,48.5264,-79.4722,305,north,sedlac,31,RPD_orig,36
+134,Pas-de-Fond core,48.8083,-78.8083,290,north,sedlac,31,RPD_orig,36
+137,Patterson Lake core,41.3867,-120.2236,2743,north,sedlac,33,RPD_orig,227
+138,Lily Lake core,41.9758,-120.2097,2042,north,sedlac,34,RPD_orig,227
+139,Dead Horse Lake core,42.5606,-120.7781,2248,north,sedlac,33,RPD_orig,227
+141,Coast Trail Pond core,37.98,-122.8,230,north,sedlac,36,RPD_orig,227
+142,DeHerrera Lake core,37.74,-107.7,3343,north,sedlac,6,RPD_orig,227
+143,Hunter's Lake core,37.6,-106.84,3516,north,sedlac,6,RPD_orig,227
+144,Jicarita Bog core,36.07,-105.58,3207,north,sedlac,6,RPD_orig,227
+145,Little Molas Lake core,37.7422,-107.7078,3370,north,sedlac,6,RPD_orig,227
+146,Paradox Lake core,60.62,-150.75,68,north,sedlac,37,RPD_orig,227
+163,Siesta Lake core,37.85,-119.66,2430,north,sedlac,41,RPD_orig,227
+167,Ferry Lake core,46.01,-92.13,25,north,sedlac,42,RPD_orig,227
+179,Curt Pond core,36.9,-84.03,336,north,sedlac,44,RPD_orig,227
+180,Cliff Palace Pond core,37.52,-83.92,424,north,sedlac,44,RPD_orig,227
+182,Horse Cove Bog core,35.04,-83.15,887,north,sedlac,45,RPD_orig,227
+184,Mound G Pond core,35.14,-88.2,143,north,sedlac,46,RPD_orig,227
+187,Cahaba Pond core,33.5,-86.53,204,north,sedlac,44,RPD_orig,227
+188,Tuskegee Pond core,35.58,-84.21,240,north,sedlac,45,RPD_orig,227
+191,Black Pond core,35.62,-84.18,262,north,sedlac,45,RPD_orig,227
+192,East Sooke Fen core,48.3519,-123.6817,155,north,sedswamp,47,RPD_orig,36
+193,Pixie core,48.595187,-124.197301,70,north,sedlac,47,RPD_orig,36
+194,Whyac core,48.6722,-124.8444,15,north,sedlac,47,RPD_orig,36
+195,Porphyry core,48.900916,-123.835013,1100,north,sedlac,47,RPD_orig,36
+196,Walker core,48.529101,-124.003118,950,north,sedlac,47,RPD_orig,36
+199,Albion core,45.67,-71.32,320,north,sedlac,48,RPD_orig,36
+200,Castor core,46.6139,-72.9989,220,north,sedlac,49,RPD_orig,36
+201,Desautels core,49.4578,-73.2567,480,north,sedlac,50,RPD_orig,36
+202,Dolbeau core,48.9669,-65.9558,965,north,sedlac,48,RPD_orig,36
+203,J'Arrive core,49.2472,-65.3764,56,north,sedlac,48,RPD_orig,36
+204,Madeleine core,47.6722,-70.7194,800,north,sedlac,49,RPD_orig,36
+205,Neume core,47.5878,-77.1108,363,north,sedlac,49,RPD_orig,36
+206,Spearman core,46.5439,-78.5028,368,north,sedlac,49,RPD_orig,36
+207,Yamaska core,45.4578,-72.8719,265,north,sedlac,51,RPD_orig,36
+208,Yelle core,48.5039,-79.6378,356,north,sedlac,31,RPD_orig,36
+211,Jackfish core,63.02,-136.47,655,north,sedlac,53,RPD_orig,36
+213,Oops core,65.44,-147.63,488,north,sedlac,54,RPD_orig,227
+215,Ruppert core,67.07,-154.24,230,north,sedlac,55,RPD_orig,227
+217,Code core,67.15,-151.86,250,north,sedlac,57,RPD_orig,227
+218,Wild Tussock core,67.128,-151.382,290,north,sedlac,57,RPD_orig,227
+219,Last Chance core,67.07,-150.75,250,north,sedlac,57,RPD_orig,227
+220,7-M core,62.5,-113.72,213,north,sedlac,58,RPD_orig,36
+221,Arrow core,60.75,-150.516667,90,north,sedlac,37,RPD_orig,227
+222,Rock Lake core,60.416667,-150.25,285,north,sedlac,59,RPD_orig,227
+224,Portage core,60.716667,-150.5333,75,north,sedlac,37,RPD_orig,227
+248,Sharkey core,44.59,-93.41,305,north,sedlac,68,RPD_orig,227
+249,Kimble core,44.22,-93.84,309,north,sedlac,69,RPD_orig,227
+253,Cooley Lake core,49.490867,-117.645321,1515,north,sedlac,8,RPD_orig,36
+254,Rockslide core,49.550849,-117.52088,1539,north,sedlac,8,RPD_orig,36
+265,ELA-320 Lake core_area,49.5,-93.5,360,north,sedlac,42,RPD_orig,36
+271,Northwest Lake core,52.5,-92.5,331,north,sedlac,73,RPD_orig,36
+280,Lac Hertel core,45.68,-74.05,75,north,sedlac,51,RPD_orig,36
+297,Nicole Lake core,62.898592,-114.806868,300,north,sedlac,58,RPD_orig,36
+300,Scotty Lake core_area,54.71,-101.68,305,north,sedlac,73,RPD_orig,36
+302,Sky Lake core_area,56.483601,-94.787937,145,north,sedlac,73,RPD_orig,36
+315,La Yeguada core,8.45,-80.85,650,north,sedlac,86,RPD_orig,170
+319,Turtle core,49.32,-124.95,80,north,sedlac,47,RPD_orig,36
+320,Boomerang core,49.18,-124.15,360,north,sedlac,47,RPD_orig,36
+321,Enos core,49.28,-124.15,50,north,sedlac,47,RPD_orig,36
+324,Lac Diana core,60.98,-69.95,114,north,sedlac,87,RPD_orig,36
+325,Lac Marcotte core,47.07,-71.42,503,north,sedlac,49,RPD_orig,36
+327,St Francois core,48.29,-72.14,358,north,sedlac,49,RPD_orig,36
+329,Mont Valin core,48.61,-70.83,356,north,sedlac,50,RPD_orig,36
+339,Lac Rond core,46,-74,360,north,sedlac,49,RPD_orig,36
+342,Pout Pond core,43.42,-71.5,232,north,sedlac,48,RPD_orig,227
+344,Round Pond core,44,-74,548,north,sedlac,48,RPD_orig,227
+346,Crawford core,43.468529,-79.948817,279,north,sedlac,51,RPD_orig,36
+347,Beaver core,42.47,-100.67,900,north,sedlac,90,RPD_orig,227
+351,Deming core,47.17,-95.1675,464,north,sedlac,42,RPD_orig,227
+354,Fish core,43.85,-95.04,423,north,sedlac,69,RPD_orig,227
+359,Moon core,46.857601,-98.158626,456,north,sedlac,91,RPD_orig,227
+361,Reservoir core,45.13,-113.46,2161,north,sedlac,1,RPD_orig,227
+362,McGinnis core,44.6,-78.03,256,north,sedlac,49,RPD_orig,36
+363,Petit Bouchard core,48.8539,-64.5978,145,north,sedlac,48,RPD_orig,36
+364,Lac aux Atocas core,45.5428,-73.3108,114,north,sedlac,51,RPD_orig,36
+365,Lac Caribou core,48.1978,-64.94,116,north,sedlac,48,RPD_orig,36
+366,Lac Clo core,48.4969,-79.3528,280,north,sedlac,31,RPD_orig,36
+367,Lac Daumont core,54.8828,-69.4028,607,north,sedlac,92,RPD_orig,36
+368,Lac Delorme core,54.4239,-69.9297,538,north,sedlac,92,RPD_orig,36
+369,Lac a Euloge core,49.2444,-65.3722,83,north,sedlac,48,RPD_orig,36
+370,Lac Gabriel core,46.2758,-73.4758,250,north,sedlac,49,RPD_orig,36
+371,Lac a Leonard core,49.2078,-65.8128,17,north,sedlac,48,RPD_orig,36
+372,Lac a la Main core,47.7,-70.6222,730,north,sedlac,49,RPD_orig,36
+373,Lac Martini core,47.475,-72.7647,242,north,sedlac,49,RPD_orig,36
+374,Lac a la Montagne Ronde core,48.3208,-68.5653,150,north,sedlac,48,RPD_orig,36
+375,Lac Ouellet core,47.5328,-68.9439,300,north,sedlac,48,RPD_orig,36
+376,Lac Perdu core,49.1708,-66.3236,152,north,sedlac,48,RPD_orig,36
+377,Pessiere_B,49.5,-79.24,280,north,sedlac,31,RPD_orig,36
+378,Triangle core,48.71,-65.4139,465,north,sedlac,48,RPD_orig,36
+379,Lac Flevy core,48.2169,-71.2189,381,north,sedlac,49,RPD_orig,36
+425,Hidden core,40.51,-106.61,2710,north,sedlac,6,RPD_orig,227
+427,South Fork Payette core,44.2,-115.5,1984,north,other,1,RPD_orig,227
+428,NE Yellowstone National Park core,45,-110,2250,north,other,1,RPD_orig,227
+429,East Lake core,37.17,-119.02,2863,north,sedlac,41,RPD_orig,227
+447,Brenda Lake core,62.35,-119.19,207,north,sedlac,5,RPD_orig,36
+449,Andy Lake core,61.95,-109.81,360,north,sedlac,58,RPD_orig,36
+452,Jason core,61.68,-107.78,120,north,sedlac,58,RPD_orig,36
+454,Corral Lake core,57.32,-100.85,75,north,sedlac,73,RPD_orig,36
+456,Two Hill Lake core,55.98,-97.28,200,north,sedlac,73,RPD_orig,36
+457,OK Lake core,54.8,-95.25,108,north,sedlac,73,RPD_orig,36
+460,Lily Pond Warwick core,42.68,-72.33,269,north,sedlac,48,RPD_orig,227
+461,Otter Pond core,42.65,-72.53,107,north,sedlac,48,RPD_orig,227
+462,Aino Pond core,42.680759,-71.925514,354,north,sedlac,110,RPD_orig,227
+464,Green Pond core,42.56,-72.51,80,north,sedlac,48,RPD_orig,227
+465,LG4-01 core,54.0358,-72.8728,470,north,sedlac,92,RPD_orig,36
+466,LG4-05 core,54.0633,-72.9153,350,north,sedlac,92,RPD_orig,36
+467,LG4-06 core,54.075,-72.9419,365,north,sedlac,92,RPD_orig,36
+468,LG4-09 core,54.9011,-72.7772,442,north,sedlac,92,RPD_orig,36
+469,LG4-12 core,52.8428,-73.3164,534,north,sedlac,92,RPD_orig,36
+480,Nelson Lake core,41.83278,-88.38,211,north,sedlac,10,RPD_orig,227
+481,Chatsworth Bog core,40.67583,-88.32306,290,north,sedlac,10,RPD_orig,227
+484,Lake Chignahuapan core,19.16,-99.53,2570,north,sedlac,114,RPD_orig,154
+485,Lago Verde core,18.61,-95.34,149,north,sedlac,115,RPD_orig,154
+487,Sacramento Mountains core,32.84,-105.7,2400,north,soil,11,RPD_orig,227
+544,Crevice Lake core,45,-110.578,1713,north,sedlac,1,RPD_orig,227
+704,Amont core,53.73,-74.38,335,north,sedswamp,92,RPD_orig,36
+705,Aval core,53.41,-73.86,335,north,sedswamp,92,RPD_orig,36
+706,Lac des Ilets core,48.19,-71.24,120,north,sedswamp,49,RPD_orig,36
+779,Laguna Verde core,13.89,-89.78,1600,north,sedlac,149,RPD_orig,206
+780,Laguna Cuzcachapa core,13.98,-89.68,709,north,sedlac,149,RPD_orig,206
+782,Laguna Santa Elena core,8.56,-82.56,1100,north,sedlac,86,RPD_orig,170
+785,Laguna Pompal core,18.37,-94.95,700,north,sedlac,115,RPD_orig,154
+791,Lower Gaylor Lake core,37.90938,-119.286309,3062,north,sedlac,41,RPD_orig,227
+792,Barrett Lake core,37.588994,-118.996235,2816,north,sedlac,41,RPD_orig,227
+800,Crevice Lake freeze core,45,-110.578,1713,north,sedlac,1,RPD_orig,227
+801,Graham Lake core,45.1833,-77.35,381,north,sedlac,49,RPD_orig,36
+802,High Lake core,44.5167,-76.6,192,north,sedlac,51,RPD_orig,36
+816,Cantarrana core,10.43,-84,36,north,sedswamp,153,RPD_orig,48
+822,Three Creeks core,44.09,-121.62,1996,north,sedlac,154,RPD_orig,227
+823,Todd Lake core,44.02,-121.68,1875,north,sedlac,154,RPD_orig,227
+824,Tumalo Lake core,44.02,-121.54,1536,north,sedlac,154,RPD_orig,227
+825,Butler Lake core,43.662484,-88.134088,316,north,sedlac,10,RPD_orig,227
+826,Seven Lake core,43.613705,-88.143562,307,north,sedlac,10,RPD_orig,227
+827,Laguna Bonillita core,9.99,-83.61,450,north,sedlac,153,RPD_orig,48
+835,Pie de Gigante core 1,11.38,-86.03,NA,north,unspec,155,RPD_orig,162
+836,Laguna Herradura core,22.01,-98.15,NA,north,unspec,156,RPD_orig,154
+839,Campbell Lake CA core,41.532802,-123.105499,1750,north,sedlac,2,RPD_orig,227
+840,Sanger Lake CA core,41.901658,-123.648973,1547,north,sedlac,2,RPD_orig,227
+841,Taylor Lake CA core,41.36144,-122.968648,1979,north,sedlac,2,RPD_orig,227
+842,USL core,42.03,-123.01,930,north,sedlac,2,RPD_orig,227
+845,Wildcat Lake core,37.96,-122.78,67,north,sedlac,36,RPD_orig,227
+846,Glenmire core 3,37.99,-122.77,399,north,sedswamp,36,RPD_orig,227
+848,Salvador core,18.795786,-70.886979,990,north,sedlac,158,RPD_orig,58
+849,Castilla core,18.7978,-70.8761,976,north,sedlac,158,RPD_orig,58
+850,Lake Oswego core,45.41,-122.66,30,north,sedlac,154,RPD_orig,227
+851,Porter Lake core,44.44,-123.24,73,north,sedlac,159,RPD_orig,227
+852,Warner Lake core,44.24,-122.95,590,north,sedlac,154,RPD_orig,227
+856,Five Lakes core,48.08,-118.92,780,north,sedlac,160,RPD_orig,227
+937,Mt Constitution C38 core,48.67642,-122.838074,735,north,unspec,47,RPD_orig,227
+960,Spring Lake core,48.57777778,-80.88072222,262,north,sedlac,31,RPD_orig,36
+984,Anderson Pond core,36.028494901294,-85.5051163141084,300,north,unspec,171,RPD_orig,227
+998,Lac a Jean-Marie Boulay core,48.9698,-64.4861,276,north,sedlac,48,RPD_orig,36
+999,Lac Bride core,47.315461,-74.49705,425,north,sedlac,49,RPD_orig,36
+1332,Air-1,53.6535,-77.729,175,north,sedswamp,92,RPD_orig,36
+1333,Air-2,53.6536,-77.7263,175,north,sedswamp,92,RPD_orig,36
+1335,Avril Lake Core,49.36874,-89.41847,472,north,sedlac,73,RPD_orig,36
+1338,Beaver Lake Core,49.53435,-90.40019,468,north,sedlac,73,RPD_orig,36
+1339,Ben Lake Core,49.35695,-89.76956,480,north,sedlac,73,RPD_orig,36
+1344,Crater Lake core,62.1,-146.238,806,north,sedlac,179,RPD_orig,227
+1346,Dom Lake Core,49.43966,-89.63204,470,north,sedlac,73,RPD_orig,36
+1352,Folly Core,45.45826,-75.77775,133,north,sedswamp,49,RPD_orig,36
+1360,Jones Lake Core,49.446389,-99.291111,409,north,sedlac,91,RPD_orig,36
+1361,JPH4,57.112222,-111.423333,336,north,sedswamp,180,RPD_orig,36
+1364,LLC-L1,52.292611,-75.8305,248,north,sedswamp,92,RPD_orig,36
+1365,LLC-L4,52.294525,-75.840805,254,north,sedswamp,92,RPD_orig,36
+1366,Lac Christelle Core,49.73214,-84.25453,291,north,sedlac,31,RPD_orig,36
+1367,Lac du Berger Core,49.41851,-90.47587,479,north,sedlac,73,RPD_orig,36
+1368,"Lac du Loup, Quebec core",53.05503,-77.40053,206,north,sedlac,92,RPD_orig,36
+1369,Lac Garot Core,51.09964,-77.55358,248,north,sedlac,31,RPD_orig,36
+1370,Lac Huard Core,50.16414,-86.8265,343,north,sedlac,73,RPD_orig,36
+1371,Lac Marie-Eve Core,52.06169,-75.51667,296,north,sedlac,31,RPD_orig,36
+1372,Lac Nano Core,53.02375,-77.36425,206,north,sedlac,92,RPD_orig,36
+1373,Lac Schon Core,50.59492,-77.56836,291,north,sedlac,31,RPD_orig,36
+1374,Lac Trefle Core,51.85014,-76.04514,270,north,sedlac,31,RPD_orig,36
+1377,Lebel core,49.0983,-68.2216,22,north,sedswamp,50,RPD_orig,36
+1383,McK,57.228333,-111.7,302,north,sedswamp,180,RPD_orig,36
+1384,McM,56.627778,-111.194167,387,north,sedswamp,180,RPD_orig,36
+1386,M-L1,52.7253,-72.2121,475,north,sedswamp,92,RPD_orig,36
+1387,M-C2,52.7248,-72.2128,474,north,sedswamp,92,RPD_orig,36
+1388,M-L2,52.7234,-72.2155,474,north,sedswamp,92,RPD_orig,36
+1389,Morts core,50.2633,-63.6683,14,north,sedswamp,50,RPD_orig,36
+1390,MOS-L1,51.985694,-75.38544,300,north,sedswamp,31,RPD_orig,36
+1391,MOS-L4,51.984608,-75.41844,302,north,sedswamp,31,RPD_orig,36
+1393,Ours-1,54.04978,-72.45406,458,north,sedswamp,92,RPD_orig,36
+1394,Ours-4,54.048805,-72.45599,459,north,sedswamp,92,RPD_orig,36
+1396,Plaine core,50.275,-63.5383,34,north,sedswamp,50,RPD_orig,36
+1398,Rad,53.7244,-77.7031,174,north,sedswamp,92,RPD_orig,36
+1399,Romaine core,50.2947,-63.7157,24,north,sedswamp,50,RPD_orig,36
+1402,Small Lake Core SML,49.581111,-90.385556,478,north,sedlac,73,RPD_orig,36
+1404,STE-L2,52.045388,-75.158944,308,north,sedswamp,31,RPD_orig,36
+1405,STE-L4,52.045416,-75.182111,304,north,sedswamp,31,RPD_orig,36
+1411,Unit Lake Core,59.404,-97.493,249,north,sedlac,58,RPD_orig,36
+1412,UTK,56.076389,-115.475278,675,north,sedswamp,180,RPD_orig,36
+1417,Auassat core,51.8136,-63.6919,466,north,sedswamp,50,RPD_orig,36
+1418,Baie core,49.0966,-68.25,17,north,sedswamp,50,RPD_orig,36
+1420,C-L1,52.6458,-72.1912,462,north,sedswamp,92,RPD_orig,36
+1421,C-C1,52.647,-72.1926,461,north,sedswamp,92,RPD_orig,36
+1422,C-L2,52.6477,-72.1932,464,north,sedswamp,92,RPD_orig,36
+1423,Clayoquot Core,49.25,-125.5,15,north,sedlac,47,RPD_orig,36
+1424,Dimple core,69.956951,-150.201839,394,north,sedlac,182,RPD_orig,227
+1425,E5 core,68.64,-149.46,805,north,sedlac,57,RPD_orig,227
+1426,Foy Freeze Core,48.16,-114.35,1006,north,sedlac,8,RPD_orig,227
+1427,Foy Core,48.16,-114.35,1006,north,sedlac,8,RPD_orig,227
+1429,Frozen Lake core,49.6,-121.46,1180,north,sedlac,183,RPD_orig,36
+1431,Keche Lake core,68.017444,-146.923806,740,north,sedlac,57,RPD_orig,227
+1436,Little Isac core,67.93,-160.78,210,north,sedlac,57,RPD_orig,227
+1438,Manic core,49.1183,-68.305,22,north,sedswamp,50,RPD_orig,36
+1439,Mista core,50.8059,-63.3432,372,north,sedswamp,50,RPD_orig,36
+1441,Mount Barr Cirque core,49.26,-121.51,1376,north,sedlac,184,RPD_orig,36
+1442,Mt Constitution C11 core,48.659979,-122.833612,611,north,sedter,47,RPD_orig,227
+1443,Mt Constitution C32 core,48.664006,-122.838676,611,north,sedter,47,RPD_orig,227
+1445,Panther Core,48.65,-121.0333,1100,north,sedlac,184,RPD_orig,227
+1446,Perch Lake core,68.941494,-150.499372,400,north,sedlac,182,RPD_orig,227
+1448,Raven core,68.009028,-162.035694,118,north,sedlac,182,RPD_orig,227
+1451,Tungak Lake core,61.4272,-164.200617,25,north,sedlac,185,RPD_orig,227
+1453,Upper Capsule Lake core,68.6286,-149.413528,800,north,sedlac,57,RPD_orig,227
+1454,West Olaf Lake Core,46.61,-96.18,402,north,sedlac,186,RPD_orig,227
+1460,BEN-2,50.11327,-68.80876,392,north,sedswamp,50,RPD_orig,36
+1461,BEN-6,50.11368,-68.80838,392,north,sedswamp,50,NA,36
+1465,BG04A,45.8,-122.49,154,north,sedlac,154,RPD_orig,227
+1470,Loon Lake core,67.92926944,-161.96694444,140,north,sedlac,182,RPD_orig,227
+1485,Lac a l'ange core,47.46,-70.4,648,north,sedlac,49,RPD_orig,36
+1488,Abeille-5,54.115296,-72.500447,441,north,sedswamp,92,RPD_orig,36
+1489,ANZ,56.471944,-111.042778,497,north,sedswamp,180,RPD_orig,36
+1490,Aurelie core,50.4185,-74.2354444444444,428,north,sedlac,31,RPD_orig,36
+1491,Ayla core,52.89425,-67.04092,582,north,sedlac,92,RPD_orig,36
+1496,CAS 0,49.55183384,-78.98619005,270,north,sedswamp,31,RPD_orig,36
+1497,CAS 50,49.55200559,-78.98670805,270,north,sedswamp,31,RPD_orig,36
+1498,CAS 100,49.5522925,-78.98717844,270,north,sedswamp,31,RPD_orig,36
+1499,Cedres core,49.346,-79.208,307,north,sedlac,31,RPD_orig,36
+1500,Chasseur core,47.745775,-79.0874527777778,275,north,sedlac,49,RPD_orig,36
+1502,Fur core,46.7102166666667,-78.7897333333333,288,north,sedlac,49,RPD_orig,36
+1504,Geais core,49.89,-78.65,280,north,sedlac,31,RPD_orig,36
+1508,Jack Pine core,50.2705555555556,-86.9627777777778,341,north,sedlac,73,RPD_orig,36
+1511,Labelle core,48.1802416666667,-79.4570111111111,375,north,sedlac,31,RPD_orig,36
+1514,Loutre core,49.7116944444444,-78.3358333333333,274,north,sedlac,31,RPD_orig,36
+1516,Profond core,49.8611388888889,-78.6133055555556,270,north,sedlac,31,RPD_orig,36
+1517,Raynald core,49.8092777777778,-78.5358333333333,250,north,sedlac,31,RPD_orig,36
+1518,Richard core,50.6194166666667,-74.6860833333333,432,north,sedlac,31,RPD_orig,36
+1519,SEB,53.476111,-114.878611,807,north,sedswamp,191,RPD_orig,36
+1521,Steeve core,51.9399722222222,-68.1553333333333,548,north,sedlac,50,RPD_orig,36
+1523,Twin Lake core,50.9524722222222,-74.5753333333333,376,north,sedlac,31,RPD_orig,36
+1530,Hudson Lake core count,61.897711,-145.670722,860,north,sedlac,179,RPD_orig,227
+1532,TOR-LT4,46.542883,-72.615028,125,north,sedswamp,49,RPD_orig,36
+1533,TOR-LT5,46.542389,-72.615036,125,north,sedswamp,49,RPD_orig,36
+1534,TOR-LT6,46.54245,-72.615492,125,north,sedswamp,49,RPD_orig,36
+1535,Lili core,49.1737502777778,-79.3741475,320,north,sedlac,31,RPD_orig,36
+1536,M14 core,50.0755555555556,-95.4022222222222,330,north,sedlac,42,RPD_orig,36
+1537,M15 core,49.7858333333333,-95.1902777777778,337,north,sedlac,42,RPD_orig,227
+1538,M16 core,49.8158333333333,-95.2655555555556,341,north,sedlac,42,RPD_orig,36
+1539,M34 core,50.23,-95.5777777777778,290,north,sedlac,42,RPD_orig,36
+1540,O4 core,49.7575,-94.8777777777778,366,north,sedlac,42,RPD_orig,227
+1541,O6 core,49.8213888888889,-94.7836111111111,361,north,sedlac,42,RPD_orig,227
+1542,O14 core,50.0283333333333,-94.824444,332,north,sedlac,42,RPD_orig,227
+1543,O15 core,50.0080555555556,-94.9825,339,north,sedlac,42,RPD_orig,36
+1547,MIL,56.930556,-111.475,334,north,sedswamp,180,RPD_orig,36
+1550,Poktovik core count,68.02,-161.37,160,north,sedlac,57,RPD_orig,227
+1554,Salmo Lake Core A count,60.4455555,-133.5613888,866,north,sedlac,53,RPD_orig,36
+1558,Uchugrak core,68.052056,-161.726278,216,north,sedlac,182,RPD_orig,227
+1572,Innu lake core,50.06864,-68.81231,400,north,sedlac,50,RPD_orig,36
+1573,CN-1,50.06864,-68.81231,400,north,sedswamp,50,RPD_orig,36
+1605,BC 1A count,57.1477833,-120.6513833,120,north,sedswamp,191,NA,36
+1606,BC 1B count,57.1477833,-120.6513833,120,north,sedswamp,191,NA,36
+1623,BC 2A count,58.4319,-120.1194444,120,north,sedswamp,12,NA,36
+1624,BC 2B count,58.4319,-120.1194444,120,north,sedswamp,12,RPD_orig,36
+1627,BC 4A count,58.8522222,-122.4227778,120,north,sedswamp,12,NA,36
+1628,BC 4B count,58.8522222,-122.4227778,120,north,sedswamp,12,NA,36
+1641,V1,49.4211,-79.003,272,north,sedswamp,31,RPD_orig,36
+1642,V2,49.4206,-79.0028,273,north,sedswamp,31,RPD_orig,36
+1643,V3,49.42,-79.0028,273,north,sedswamp,31,RPD_orig,36
+1672,L1,49.1723,-79.3703,317,north,sedswamp,31,RPD_orig,36
+1673,L2,49.172,-79.3695,317,north,sedswamp,31,RPD_orig,36
+1674,L3,49.1719,-79.3691,318,north,sedswamp,31,RPD_orig,36
+1677,NW 1 core,61.8459167,-122.4,120,north,sedswamp,12,RPD_orig,36
+1734,Lin core,61.48,-163.43,2,north,sedlac,185,RPD_orig,227
+1777,Lac Geai SBL core,45.995878,-73.993222,360,north,sedlac,49,RPD_orig,36
+1780,Fariya Lake core_micro,59.8483333333333,-111.291111111111,225,north,sedlac,58,RPD_orig,36
+1781,Fariya Lake core_macro,59.8483333333333,-111.291111111111,225,north,sedlac,58,RPD_orig,36
+1782,Rainbow Lake core,59.8,-112.166666666667,225,north,sedlac,12,RPD_orig,36
+1784,Abalone Rocks Marsh core,33.956389,-119.976667,0,north,sedswamp,204,RPD_orig,227
+1785,Big Fish Lake core_fine,42.88396,-83.39243,320,north,sedlac,205,RPD_orig,227
+1786,Copper Falls Lake core,47.417,-88.192,392,north,sedlac,42,RPD_orig,227
+1788,Lake Eileen core,40.902,-106.673,3135,north,sedlac,6,RPD_orig,227
+1789,Gold Creek Lake core,40.781,-106.678,2917,north,sedlac,6,RPD_orig,227
+1790,Gem Lake Colorado core,40.881,-106.734,3101,north,sedlac,6,RPD_orig,227
+1791,Minnesota Plateau Lake core,62.541794,-146.238431,827,north,sedlac,206,RPD_orig,227
+1792,Hinman Lake core,40.771,-106.827,2501,north,sedlac,6,RPD_orig,227
+1793,Middle Rainbow Lake core,40.648,-106.624,3001,north,sedlac,6,RPD_orig,227
+1794,Round Lake MZ core,40.473,-106.663,3071,north,sedlac,6,RPD_orig,227
+1795,Seven Lake MZ core,40.896,-106.681,3276,north,sedlac,6,RPD_orig,227
+1796,Teal Lake CO core,40.583,-106.608,2689,north,sedlac,6,RPD_orig,227
+1797,Whale Lake MZ core,40.556,-106.675,3059,north,sedlac,6,RPD_orig,227
+1798,Summit Lake MZ core,40.545,-106.682,3149,north,sedlac,6,RPD_orig,227
+1799,Super Cub Lake core,62.296611,-145.347172,486,north,sedlac,179,RPD_orig,227
+1800,Slack Lake MI core,42.87167,-83.61042,282,north,sedlac,205,RPD_orig,227
+1801,Swift Lake MI core,42.8852,-83.62281,286,north,sedlac,205,RPD_orig,227
+1802,Tiago Lake MZ core,40.579,-106.613,2700,north,sedlac,6,RPD_orig,227
+1829,Keyhole core,61.078,-138.375,826,north,sedlac,53,RPD_orig,36
+1830,Upper Fly core_micro,61.04,-138.09,1326,north,sedlac,53,RPD_orig,36
+1831,Upper Fly core_macro,61.04,-138.09,1326,north,sedlac,53,RPD_orig,36
+1832,Sulphur core_micro,60.959,-137.852,847,north,sedlac,53,RPD_orig,36
+1833,Sulphur core_macro,60.959,-137.852,847,north,sedlac,53,RPD_orig,36
+1834,Aishihik WA01_micro,61.233,-136.917,1000,north,sedlac,53,RPD_orig,36
+1835,Aishihik WA01_macro,61.233,-136.917,1000,north,sedlac,53,RPD_orig,36
+1836,Brule core,45.717,-75.433,270,north,sedlac,49,RPD_orig,36
+1837,Noir core,45.775,-75.133,176,north,sedlac,49,RPD_orig,36
+1838,Tawny core,44.817,-77.183,276,north,sedlac,49,RPD_orig,36
+1839,Stoll core,44.967,-77.283,303,north,sedlac,49,RPD_orig,36
+1841,Basin core,44.4666666666667,-70.05,125,north,sedlac,48,RPD_orig,227
+1842,Conroy core,46.2833333333333,-67.8833333333333,140,north,sedlac,48,RPD_orig,227
+1843,Clear core,43.75,-74.0166666666667,513,north,sedlac,48,RPD_orig,227
+1844,Ely core,41.7666666666667,-75.8333333333333,384,north,sedlac,208,RPD_orig,227
+1845,Hells Kitchen core,46.1833333333333,-89.7,500,north,sedlac,42,RPD_orig,227
+1846,Little Pine core,45.2833333333333,-91.4833333333333,334,north,sedlac,68,RPD_orig,227
+1847,Dark core,45.2666666666667,-91.4666666666667,335,north,sedlac,68,RPD_orig,227
+1848,Ruby core,45.2666666666667,-91.45,330,north,sedlac,68,RPD_orig,227
+1849,Lake of the Clouds core,48,-91.0166666666667,462,north,sedlac,42,RPD_orig,227
+1850,LM01 core,55.62,-74.58,320,north,sedlac,92,RPD_orig,36
+1851,EC03 core,56.02,-74.98,279,north,sedlac,92,RPD_orig,36
+1852,MV01 core,56.94,-74.9,300,north,sedlac,92,RPD_orig,36
+1853,BN07 core,55,-73.52,395,north,sedlac,92,RPD_orig,36
+1854,GB01 core,55.12,-75.25,325,north,sedlac,92,RPD_orig,36
+1855,EC02 core,56.02,-74.95,260,north,sedlac,92,RPD_orig,36
+1856,GB02 core,55.1,-75.28,300,north,sedlac,92,RPD_orig,36
+1857,EC01 core,56.28,-75.1,250,north,sedlac,92,RPD_orig,36
+1858,LB01 core,57.92,-75.62,200,north,sedlac,92,RPD_orig,36
+1859,LR01 core,58.58,-75.25,170,north,sedlac,87,RPD_orig,36
+1860,BI02 core,57.12,-76.38,210,north,sedlac,92,RPD_orig,36
+1861,LR03 core,58.57,-75.22,160,north,sedlac,87,RPD_orig,36
+1862,LT01 core,59.14,-75.15,150,north,sedlac,87,RPD_orig,36
+1864,Appleman Lake core,41.6233309,-85.2128058,293,north,sedlac,205,RPD_orig,227
+1865,Bass Lake core,45.1975,-94.8791,361,north,sedlac,68,RPD_orig,227
+1866,Camp Lake core,45.1593,-94.0916,316,north,sedlac,68,RPD_orig,227
+1867,Crystal Lake core,44.3339,-93.2113,284,north,sedlac,68,RPD_orig,227
+1868,Amber Lake core,43.6053,-94.4725,351,north,sedlac,69,RPD_orig,227
+1869,Eagle CC core,44.8087,-93.9336,294,north,sedlac,68,RPD_orig,227
+1870,Lake Emily core,44.314,-93.9143,344,north,sedlac,69,RPD_orig,227
+1871,Fuller Lake core,45.4206,-94.0743,292,north,sedlac,68,RPD_orig,227
+1872,Goose MC core,44.9855,-94.5863,334,north,sedlac,68,RPD_orig,227
+1873,Hunt RC core,44.3314,-93.4454,327,north,sedlac,69,RPD_orig,227
+1874,Kelly Dudley Lake core,44.3523,-93.3708,321,north,sedlac,69,RPD_orig,227
+1875,Minnreg Lake core,44.6905,-93.3197,NA,north,sedlac,68,RPD_orig,227
+1876,Murphy Lake SLC core,44.7105,-93.3417,411,north,sedlac,68,RPD_orig,227
+1877,Lake Martha WC core,45.1422,-93.7392,295,north,sedlac,68,RPD_orig,227
+1878,Union Lake RC core,44.4611,-93.3074,306,north,sedlac,68,RPD_orig,227
+1879,Lily Lake WC core,44.1912,-93.6401,311,north,sedlac,69,RPD_orig,227
+1880,Fish Lake LSC core,44.2274,-93.6648,310,north,sedlac,69,RPD_orig,227
+1881,Fish Lake Scott core,44.6492,-93.4597,288,north,sedlac,68,RPD_orig,227
+1883,Chopper Lake core,66.00225,-146.27532,NA,north,sedlac,54,RPD_orig,227
+1884,Epilobium Lake core,65.97248,-145.56712,366,north,sedlac,54,RPD_orig,227
+1885,Granger Lake core,66.05754,-145.65209,NA,north,sedlac,54,RPD_orig,227
+1886,Jonah Lake core,66.068,-145.08488,NA,north,sedlac,54,RPD_orig,227
+1887,Landing Lake core,65.90337,-145.77707,394,north,sedlac,54,RPD_orig,227
+1888,Latitude Lake core,65.92689,-146.14223,NA,north,sedlac,54,RPD_orig,227
+1889,Lucky Lake core,66.01737,-145.52501,NA,north,sedlac,54,RPD_orig,227
+1890,Noir Lake core,66.00261,-145.92613,NA,north,sedlac,54,RPD_orig,227
+1891,Picea Lake core,65.88162,-145.58768,269,north,sedlac,54,RPD_orig,227
+1892,Reunion Lake core,66.00925,-146.1078,306,north,sedlac,54,RPD_orig,227
+1893,Robinson Lake core,65.97158,-145.69925,NA,north,sedlac,54,RPD_orig,227
+1894,Screaming Lynx Lake core,66.06815,-145.4044,276,north,sedlac,54,RPD_orig,227
+1895,West Crazy Lake core,65.89142,-145.62195,NA,north,sedlac,54,RPD_orig,227
+1896,Windy Lake core,66.04169,-145.75471,NA,north,sedlac,54,RPD_orig,227
+1911,Big Spirit Lake core,43.48462,-95.10617,449,north,sedlac,69,RPD_orig,227
+1912,Bass Lake FC core,43.82053,-94.07825,314,north,sedlac,69,RPD_orig,227
+1913,Fox Lake MC core,43.67528,-94.69222,381,north,sedlac,69,RPD_orig,227
+1914,Duck Pond Wellfleet core,41.932448,-70.000651,2.5,north,sedlac,110,RPD_orig,227
+1915,Lily Pond NS core,42.4181,-72.3468,303,north,sedlac,48,RPD_orig,227
+1916,Mansell Pond core MS660,45.04167,-68.733,58,north,sedlac,48,RPD_orig,227
+1919,Wickett Pond core,42.57,-72.43167,330,north,sedlac,48,RPD_orig,227
+1920,Piermont Marsh core,41,-73.9167,29,north,sedswamp,110,RPD_orig,227
+1921,Spruce Pond core,41.2394,-74.204167,223,north,sedlac,110,RPD_orig,227
+1922,Sutherland Pond core,41.3914,-74.0377,380,north,sedlac,110,RPD_orig,227
+1923,Lac Nans core,50.3686388888889,-74.30591667,431,north,sedlac,31,NA,36
+2025,Little Lake core 93,44.167778,-123.582222,210,north,sedswamp,3,RPD_orig,227
+2026,Little Lake core 91,44.167778,-123.582222,210,north,sedlac,3,RPD_orig,227
+2028,Lago Catemaco core,18.666667,-95,340,north,sedlac,115,RPD_orig,154
+2029,Laguna EkNaab core,17.421145,-89.236475,160,north,sedlac,115,RPD_orig,35
+2030,Iztapa core,13.951908,-90.659736,10,north,sedswamp,149,RPD_orig,88
+2051,Cenote Kail core_micro,16,-91.554,1534,north,sedlac,149,RPD_orig,88
+2052,Cenote Kail core_macro,16,-91.554,1534,north,sedlac,149,RPD_orig,88
+2054,Dragonfly Lake Core A,60.8119444,-135.34,760,north,sedlac,53,RPD_orig,36
+2055,Core B,66.089,-146.73,207,north,sedlac,54,RPD_orig,227
+2056,Haircut Lake Core A count,60.515555,-133.205555,1000,north,sedlac,53,RPD_orig,36
+2062,Lone Pine composite,40.2327333,-105.73165,3016,north,sedlac,6,RPD_orig,227
+2063,Odessa Lake composite,40.3303667,-105.6854,3051,north,sedlac,6,RPD_orig,227
+2064,Sand Beach composite,40.2187667,-105.6018,3140,north,sedlac,6,RPD_orig,227
+2065,Thunder Lake composite,40.2219,-105.6472833,3231,north,sedlac,6,RPD_orig,227
+2066,Wentworth Lake core,48.0166667,-124.533333,47,north,sedlac,3,RPD_orig,227
+2067,Yahoo Lake core,47.683333,-124.016667,710,north,sedlac,3,RPD_orig,227
+2068,Little Pond Bolton core,42.42234,-71.587738,99,north,sedlac,110,RPD_orig,227
+2069,Little Pond Royalston core,42.675,-72.19167,302,north,sedlac,48,RPD_orig,227
+2070,Berry East core,42.6201,-71.08733,43,north,sedlac,110,RPD_orig,227
+2073,Chickaree composite core,40.334125,-105.841095,2796,north,sedlac,6,RPD_orig,227
+2076,Jan Lake core_gtr125,63.56667,-143.9,485,north,sedlac,206,RPD_orig,227
+2077,Jan Lake core_gtr250,63.56667,-143.9,485,north,sedlac,206,RPD_orig,227
+2082,Steel Lake core,46.9731,-94.6837,425,north,sedlac,42,RPD_orig,227
+2087,Marcella Lake Core Z count,60.0736111,-133.807777,697,north,sedlac,53,RPD_orig,36
+2088,Marcella Lake Core A-Z composite,60.0736111,-133.807777,697,north,sedlac,53,RPD_orig,36
+2089,SoT Core Z,66.0285,-147.549,256,north,sedlac,54,RPD_orig,227
+2091,Mallard Lake core,51.287669,-101.324722,570,north,sedlac,228,RPD_orig,36
+2093,Black HF core,41.3281,-70.7923,13,north,sedlac,110,RPD_orig,227
+2094,Blaneys Pond HF core,41.4717,-70.7652,5,north,sedlac,110,RPD_orig,227
+2096,Cain HF core,41.8583,-70.9784,20,north,sedlac,110,RPD_orig,227
+2097,Coldwater Lake core,46.01666,-99.06666,596,north,sedlac,229,RPD_orig,227
+2098,Rice lake core,48,-101.53333,620,north,sedlac,229,RPD_orig,227
+2099,Deep_Taunton core,41.8824,-71.0115,7,north,sedlac,110,RPD_orig,227
+2102,Doe HF core,42.1754,-72.7024,79,north,sedlac,110,RPD_orig,227
+2103,Duarte Pond HF core,41.42,-70.6155,15,north,sedlac,110,RPD_orig,227
+2104,Green HF core,42.5668,-72.5111,82,north,sedlac,48,RPD_orig,227
+2106,Sandy Hill Pond core,41.6896,-70.3648,16,north,sedlac,110,RPD_orig,227
+2107,Sears HF core,40.8845,-72.5783,2,north,sedlac,110,RPD_orig,227
+2108,Canoe core,53.04889,-57.67175,166,north,sedlac,50,RPD_orig,36
+2109,Big Beer core,53.12281,-60.10361,315,north,sedlac,92,RPD_orig,36
+2110,111 core,59.912878,-96.9576,225,north,sedlac,58,RPD_orig,36
+2111,150 core,59.875018,-98.1318,299,north,sedlac,58,RPD_orig,36
+2112,396 core,59.571677,-98.5591,317,north,sedlac,58,RPD_orig,36
+2113,614 core,59.321304,-97.2804,268,north,sedlac,58,RPD_orig,36
+2114,630 core,59.314377,-98.0836,271,north,sedlac,58,RPD_orig,36
+2115,785 core,59.118988,-97.4093,234,north,sedlac,58,RPD_orig,36
+2116,Shuttle core,59.84616,-97.6351,276,north,sedlac,58,RPD_orig,36
+2117,Umpawaug core,41.3061,-73.449700000000007,138,north,sedlac,110,RPD_orig,227
+2118,Uncle Seth's core,41.4331,-70.6647,13,north,sedlac,110,RPD_orig,227
+2120,Ware core,42.4825,-70.8825,4,north,sedlac,110,RPD_orig,227
+2121,Westside core,41.8556,-73.2566,390,north,sedlac,110,RPD_orig,227
+2122,Wildwood Lake core,40.892,-72.6733,5,north,sedlac,110,RPD_orig,227
+2127,Blood HF core,42.08,-71.9615,214,north,sedlac,110,RPD_orig,227
+2128,Harlock Pond HF core,41.403,-70.713,23,north,sedlac,110,RPD_orig,227
+2129,Icehouse Pond HF core,41.798,-69.961,19,north,sedlac,110,RPD_orig,227
+2134,Eagle Pond HF core,41.698,-70.137,11,north,sedlac,110,RPD_orig,227
+2135,Jemima Pond HF core,41.829,-69.985,3,north,sedlac,110,RPD_orig,227
+2136,Knob Hill Pond HF core,44.3605,-72.3737,370,north,sedlac,48,RPD_orig,227
+2148,Lake Tulane_Grimm1993,27.585,-81.5036,36,north,sedlac,46,RPD_orig,227
+2157,ODP hole 893A,34.28,-120.03,-577,north,sedmar,240,RPD_orig,227
+2163,Lake Tulane TFG,29.83,-81.95,35,north,sedlac,46,RPD_orig,227
+2164,URCB composite_250,47.04,-115.88,1710,north,sedswamp,8,RPD_orig,227
+2165,URCB composite_150,47.04,-115.88,1710,north,sedswamp,8,RPD_orig,227
+2167,Fresh Pond Falmouth HF core,41.5935,-70.5338,6,north,sedlac,110,RPD_orig,227
+2168,Bates Pond_Canterbury core,41.65878,-72.01623,95,north,sedlac,110,RPD_orig,227
+2171,Duck Pond_Naushon core,41.494745,-70.71416,3,north,sedlac,110,RPD_orig,227
+2182,Marys Pond HF core,41.506151,-70.713474,26,north,sedlac,110,RPD_orig,227
+2184,North Round Pond core,42.8476,-72.4519,317,north,sedlac,48,RPD_orig,227
+2187,Round Pond_Truro core,41.971,-70.011,4,north,sedlac,110,RPD_orig,227
+2193,Pecker Pond core,42.7133,-71.965,370,north,sedlac,110,RPD_orig,227
+2196,Deep Pond_Falmouth core,41.564087,-70.635791,23,north,sedlac,110,RPD_orig,227
+2206,Binnewater core,41.409742,-74.551738,256,north,sedlac,208,RPD_orig,227
+2211,Hyde Park core,41.78,-73.89,74,north,sedlac,48,RPD_orig,227
+2232,Swamp Lake core,37.95,-119.816667,1554,north,sedlac,41,RPD_orig,227
+2238,Deuce Lake core,65.51667,-147.5167,170,north,sedlac,54,RPD_orig,227
+2239,Dune Lake Core A,64.41667,-149.9,134,north,sedlac,54,RPD_orig,227
+2255,Kettle Lake core,48.607198,-103.623723,610,north,sedlac,229,RPD_orig,227
+2256,Beef Pasture core H 25-50um,37.41,-108.15,3060,north,sedswamp,7,RPD_orig,227
+2257,Beef Pasture core H 50-100um,37.41,-108.15,3060,north,sedswamp,7,RPD_orig,227
+2258,Beef Pasture core H >100um,37.41,-108.15,3060,north,sedswamp,7,RPD_orig,227
+2297,Aguada de Petapilla 1989 core,14.86,-89.12,705,north,sedswamp,149,RPD_orig,95
+2300,Bao-1 1997 core charcoal concentration,19.06,-71.03,1775,north,sedswamp,158,RPD_orig,58
+2303,Cana Swamp 1,7.75,-77.58,500,north,sedswamp,252,RPD_orig,170
+2305,Charco Verde core,11.47,-85.63,33,north,sedlac,155,RPD_orig,162
+2322,Lago Chirripo composite core,9.483,-83.496,3520,north,sedlac,258,RPD_orig,48
+2324,Lago de las Morrenas core,9.48,-83.48,3480,north,sedlac,258,RPD_orig,48
+2332,Laguna Llana del Espino core,13.95,-89.52,700,north,sedlac,149,RPD_orig,206
+2333,Laguna Metapan core,14.30071,-89.477829,450,north,sedlac,149,RPD_orig,206
+2335,Laguna Volcan core,8.75,-82.68,1500,north,sedlac,86,RPD_orig,170
+2336,Laguna Zoncho charcoal ratio,8.81,-82.96,1190,north,sedlac,86,RPD_orig,48
+2337,Laguna Zoncho charcoal count,8.81,-82.96,1190,north,sedlac,86,RPD_orig,48
+2344,Lake Miragoane core,18.4,-73.05,20,north,sedlac,158,RPD_orig,97
+2345,Lake Nicaragua core LC-4,11.76258,-85.872528,30,north,sedlac,155,RPD_orig,162
+2351,Lake Wodehouse core,7.65,-77.55,500,north,sedlac,252,RPD_orig,170
+2415,Lake Aljojuca core,19.09113,-97.533602,2376,north,sedlac,114,RPD_orig,154
+2424,Niliq core,67.867867,-160.431633,270,north,sedlac,57,RPD_orig,227
+2425,Red Lake core,68.081317,-162.121617,NA,north,sedlac,182,RPD_orig,227
+2428,TE11 core,69.94225,-159.3833,NA,north,sedlac,182,RPD_orig,227
+2429,Aero-1,54.101027,-72.516166,432,north,sedswamp,92,RPD_orig,36
+2430,Aero-5,54.101027,-72.516166,431,north,sedswamp,92,RPD_orig,36
+2431,FLYukon core,68.009783,-160.170133,NA,north,sedlac,57,RPD_orig,227
+2432,Erethizon core,61.599383,-161.1604167,NA,north,sedlac,55,RPD_orig,227
+2433,Bouleau core,50.5239,-63.2073,108,north,sedswamp,50,RPD_orig,36
+2483,Ocate core,36.241672,-105.150067,2905,north,sedswamp,6,RPD_orig,227
+2485,Alamo Bog core_125,35.91,-106.58,2630,north,sedlac,272,RPD_orig,227
+2486,Alamo Bog core_total,35.91,-106.58,2630,north,sedlac,272,RPD_orig,227
