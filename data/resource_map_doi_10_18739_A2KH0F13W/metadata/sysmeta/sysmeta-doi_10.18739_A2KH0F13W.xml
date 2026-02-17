@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:systemMetadata xmlns:ns2="http://ns.dataone.org/service/types/v1" xmlns:ns3="http://ns.dataone.org/service/types/v2.0">
+    <serialVersion>1</serialVersion>
+    <identifier>doi:10.18739/A2KH0F13W</identifier>
+    <formatId>https://eml.ecoinformatics.org/eml-2.2.0</formatId>
+    <size>69433</size>
+    <checksum algorithm="MD5">a4fdbfec2945b36306dd73b25b83dac8</checksum>
+    <submitter>http://orcid.org/0009-0007-8384-5074</submitter>
+    <rightsHolder>http://orcid.org/0000-0001-9051-5240</rightsHolder>
+    <accessPolicy>
+        <allow>
+            <subject>CN=arctic-data-admins,DC=dataone,DC=org</subject>
+            <permission>read</permission>
+            <permission>write</permission>
+            <permission>changePermission</permission>
+        </allow>
+        <allow>
+            <subject>public</subject>
+            <permission>read</permission>
+        </allow>
+    </accessPolicy>
+    <replicationPolicy replicationAllowed="false" numberReplicas="0"/>
+    <obsoletes>urn:uuid:d61933ad-c3c8-4e94-8e33-0b6d460dee31</obsoletes>
+    <archived>false</archived>
+    <dateUploaded>2024-04-08T22:34:50.157+00:00</dateUploaded>
+    <dateSysMetadataModified>2024-04-08T22:34:53.570+00:00</dateSysMetadataModified>
+    <originMemberNode>urn:node:ARCTIC</originMemberNode>
+    <authoritativeMemberNode>urn:node:ARCTIC</authoritativeMemberNode>
+    <fileName>1750_to_2010_Refractory_Black_Carbon_Deposition_fr.xml</fileName>
+</ns3:systemMetadata>

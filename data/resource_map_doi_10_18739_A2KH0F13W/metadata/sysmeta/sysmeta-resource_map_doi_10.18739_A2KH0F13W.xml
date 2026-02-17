@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:systemMetadata xmlns:ns2="http://ns.dataone.org/service/types/v1" xmlns:ns3="http://ns.dataone.org/service/types/v2.0">
+    <serialVersion>1</serialVersion>
+    <identifier>resource_map_doi:10.18739/A2KH0F13W</identifier>
+    <formatId>http://www.openarchives.org/ore/terms</formatId>
+    <size>7577</size>
+    <checksum algorithm="SHA-256">8e974afb62fdc4c0b482cdb1a219ac2288c467cb2924bbd83fca0308553e0133</checksum>
+    <submitter>http://orcid.org/0009-0007-8384-5074</submitter>
+    <rightsHolder>http://orcid.org/0000-0001-9051-5240</rightsHolder>
+    <accessPolicy>
+        <allow>
+            <subject>CN=arctic-data-admins,DC=dataone,DC=org</subject>
+            <permission>read</permission>
+            <permission>write</permission>
+            <permission>changePermission</permission>
+        </allow>
+        <allow>
+            <subject>public</subject>
+            <permission>read</permission>
+        </allow>
+    </accessPolicy>
+    <replicationPolicy replicationAllowed="true" numberReplicas="3"/>
+    <obsoletes>resource_map_urn:uuid:6e60c765-24a9-463f-9b9d-92238c995667</obsoletes>
+    <archived>false</archived>
+    <dateUploaded>2024-04-08T22:35:17.613+00:00</dateUploaded>
+    <dateSysMetadataModified>2024-04-08T22:35:18.284+00:00</dateSysMetadataModified>
+    <originMemberNode>urn:node:ARCTIC</originMemberNode>
+    <authoritativeMemberNode>urn:node:ARCTIC</authoritativeMemberNode>
+    <fileName>resource_map_doi:10.18739_A2KH0F13W.rdf</fileName>
+</ns3:systemMetadata>

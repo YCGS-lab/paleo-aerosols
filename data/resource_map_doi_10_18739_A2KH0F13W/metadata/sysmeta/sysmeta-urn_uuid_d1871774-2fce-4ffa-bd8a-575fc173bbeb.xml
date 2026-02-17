@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:systemMetadata xmlns:ns2="http://ns.dataone.org/service/types/v1" xmlns:ns3="http://ns.dataone.org/service/types/v2.0">
+    <serialVersion>0</serialVersion>
+    <identifier>urn:uuid:d1871774-2fce-4ffa-bd8a-575fc173bbeb</identifier>
+    <formatId>text/csv</formatId>
+    <size>1316</size>
+    <checksum algorithm="MD5">e3fe3eebdbb993ee563ac3b0a2321f9b</checksum>
+    <submitter>http://orcid.org/0000-0001-9051-5240</submitter>
+    <rightsHolder>http://orcid.org/0000-0001-9051-5240</rightsHolder>
+    <accessPolicy>
+        <allow>
+            <subject>CN=arctic-data-admins,DC=dataone,DC=org</subject>
+            <permission>read</permission>
+            <permission>write</permission>
+            <permission>changePermission</permission>
+        </allow>
+        <allow>
+            <subject>public</subject>
+            <permission>read</permission>
+        </allow>
+    </accessPolicy>
+    <replicationPolicy replicationAllowed="false" numberReplicas="0"/>
+    <obsoletes>urn:uuid:58257cd8-189b-4386-a749-cff38e834f90</obsoletes>
+    <archived>false</archived>
+    <dateUploaded>2024-01-10T23:50:44.778+00:00</dateUploaded>
+    <dateSysMetadataModified>2024-04-08T22:34:49.036+00:00</dateSysMetadataModified>
+    <originMemberNode>urn:node:ARCTIC</originMemberNode>
+    <authoritativeMemberNode>urn:node:ARCTIC</authoritativeMemberNode>
+    <fileName>1750_to_2010_global_ice_core_array_information.csv</fileName>
+</ns3:systemMetadata>

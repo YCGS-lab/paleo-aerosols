@@ -22,9 +22,10 @@ output_dir <- file.path(base_dir, "output/working_fig_pieces")
 dir.create(output_dir, recursive = TRUE)
 
 # ================================= Switches ================================== ####
-printOn <- TRUE
-saveOn <- TRUE
+printOn <- FALSE
+saveOn <- FALSE
 smooth_scar_data <- TRUE
+iceMode <- 'raw'  # Options: 'inversion' or 'raw'
 
 text_size_multiplier <- 0.8
 fig_w <- 3
@@ -80,7 +81,283 @@ smooth_scar_series <- function(scar_data, hw1, hw2, degree = 1, family = "gaussi
   return(scar_data)
 }
 
+# ---------------------------- zscore_normalize --------------------------------- #
+
+# Z-score normalization function
+zscore_normalize <- function(data_list) {
+  lapply(data_list, function(df) {
+    if(!is.null(df) && "rBC_deposition" %in% names(df)) {
+      # Calculate mean and sd for the entire record
+      mean_val <- mean(df$rBC_deposition, na.rm = TRUE)
+      sd_val <- sd(df$rBC_deposition, na.rm = TRUE)
+      
+      # Create z-scored version
+      df$rBC_deposition_zscore <- (df$rBC_deposition - mean_val) / sd_val
+      
+      # Replace the original column with z-scored values
+      df$rBC_deposition <- df$rBC_deposition_zscore
+      df$rBC_deposition_zscore <- NULL  # Remove temporary column
+    }
+    return(df)
+  })
+}
+
+# ------------------------- smooth_ice_core_series ------------------------------ #
+
+# Smooth ice core time series function
+smooth_ice_core_series <- function(data_list, hw1, hw2, degree = 1, family = "gaussian") {
+  lapply(data_list, function(df) {
+    if(!is.null(df) && "rBC_deposition" %in% names(df)) {
+      
+      # Extract x (year) and y (rBC_deposition)
+      x <- df$year_ce
+      y <- df$rBC_deposition
+      
+      # Remove any NA values
+      valid_idx <- !is.na(x) & !is.na(y)
+      x_valid <- x[valid_idx]
+      y_valid <- y[valid_idx]
+      
+      if(length(x_valid) < 3) {
+        warning("Not enough data points for smoothing")
+        return(df)
+      }
+      
+      # Initialize smoothed columns with NA
+      df$rBC_deposition_smooth1 <- NA
+      df$rBC_deposition_smooth2 <- NA
+      
+      # Fit narrow LOWESS curve using only valid data
+      loc_fit_narrow <- locfit(y_valid ~ lp(x_valid, deg = degree, h = hw1), family = family)
+      
+      # Fit wide LOWESS curve using only valid data
+      loc_fit_wide <- locfit(y_valid ~ lp(x_valid, deg = degree, h = hw2), family = family)
+      
+      # Predict only for valid indices
+      smoothed_narrow <- predict(loc_fit_narrow, newdata = data.frame(x_valid = x[valid_idx]))
+      smoothed_wide <- predict(loc_fit_wide, newdata = data.frame(x_valid = x[valid_idx]))
+      
+      # Add smoothed values only where we have valid data
+      df$rBC_deposition_smooth1[valid_idx] <- smoothed_narrow
+      df$rBC_deposition_smooth2[valid_idx] <- smoothed_wide
+    }
+    return(df)
+  })
+}
+
 # ----------------------------- plot_timeseries --------------------------------- #
+
+# plot_timeseries <- function(data_list, pltParams,
+#                             age_var = "year",           # Name of age/time column
+#                             value_var = "value",        # Name of value column to plot
+#                             ci_upper_var = NULL,        # Name of upper CI column (optional)
+#                             ci_lower_var = NULL,        # Name of lower CI column (optional)
+#                             smooth1_var = NULL,         # Name of first smooth curve column (optional)
+#                             smooth2_var = NULL,         # Name of second smooth curve column (optional)
+#                             plot_smooth1 = FALSE,       # Whether to plot first smooth curve
+#                             plot_smooth2 = FALSE,       # Whether to plot second smooth curve
+#                             smooth1_label = "smooth",   # Label for first smooth curve in legend
+#                             smooth2_label = "smooth2",  # Label for second smooth curve in legend
+#                             ylab = "Fire emissions",    # Y-axis label
+#                             save_path = NULL,
+#                             fname_prefix = "timeseries",
+#                             save_transparent = TRUE,
+#                             save_variants = TRUE) {
+# 
+#   # Set up y-limits and x-limits
+#   xlims <- c(pltParams[["xmin"]], pltParams[["xmax"]])
+#   ylims <- c(pltParams[["ymin"]], pltParams[["ymax"]])
+# 
+#   # Create print directory
+#   if(is.null(save_path)) {
+#     print_dir <- output_dir
+#   } else {
+#     print_dir <- save_path
+#   }
+#   dir.create(print_dir, recursive = TRUE, showWarnings = FALSE)
+# 
+#   # Function to create a single plot with options
+#   create_single_plot <- function(show_legend = TRUE,
+#                                  show_xaxis = TRUE,
+#                                  yaxis_right = FALSE) {
+# 
+#     # Set margins based on options
+#     if (yaxis_right && !show_xaxis) {
+#       par(mar = c(1, 1, 1, 4), cex = 0.75 * text_size_multiplier)
+#     } else if (!show_xaxis) {
+#       par(mar = c(1, 4, 1, 2), cex = 0.75 * text_size_multiplier)
+#     } else if (yaxis_right) {
+#       par(mar = c(5, 2, 4, 4), cex = 0.75 * text_size_multiplier)
+#     } else {
+#       par(mar = c(5, 4, 4, 2), cex = 0.75 * text_size_multiplier)
+#     }
+# 
+#     # Determine axis parameters
+#     yaxt_param <- if(yaxis_right) "n" else "s"
+#     xaxt_param <- if(!show_xaxis) "n" else "s"
+#     bty_param <- if(!show_xaxis) "n" else "o"
+# 
+#     plot(NA, type = "n", xlim = xlims, ylim = ylims,
+#          xlab = if(show_xaxis) "Year (CE)" else "",
+#          ylab = if(!yaxis_right) ylab else "",
+#          main = "",
+#          yaxt = yaxt_param,
+#          xaxt = xaxt_param,
+#          bty = bty_param)
+# 
+#     # Add y-axis on right if needed
+#     if(yaxis_right) {
+#       axis(4, las = 1)
+#       mtext(ylab, side = 4, line = 3, cex = 0.75 * text_size_multiplier)
+#     }
+# 
+#     # For plots without x-axis, manually draw only the y-axis line
+#     if(!show_xaxis) {
+#       usr <- par("usr")
+# 
+#       if(yaxis_right) {
+#         lines(c(usr[2], usr[2]), c(usr[3], usr[4]), col = "black", lwd = 1)
+#       } else {
+#         lines(c(usr[1], usr[1]), c(usr[3], usr[4]), col = "black", lwd = 1)
+#       }
+#     }
+# 
+#     # Add major and minor ticks to x-axis if shown
+#     if(show_xaxis) {
+#       major_ticks <- pretty(xlims)
+#       minor_ticks <- unlist(lapply(1:(length(major_ticks) - 1), function(k) {
+#         seq(major_ticks[k], major_ticks[k + 1], length.out = 6)[-c(1, 6)]
+#       }))
+# 
+#       axis(side = 1, at = major_ticks, labels = TRUE)
+#       axis(side = 1, at = minor_ticks, labels = FALSE, tcl = -0.3)
+#       axis(side = 3, at = major_ticks, labels = FALSE, tcl = 0.5)
+#       axis(side = 3, at = minor_ticks, labels = FALSE, tcl = 0.25)
+#     }
+# 
+#     # Plot data
+#     for(dataset_name in names(data_list)) {
+#       data <- data_list[[dataset_name]]
+# 
+#       # Get colors for raw and smooth curves
+#       color_raw <- pltParams[["colors"]]["raw", dataset_name]
+#       color_smooth1 <- pltParams[["colors"]]["smooth1", dataset_name]
+#       color_smooth2 <- pltParams[["colors"]]["smooth2", dataset_name]
+# 
+#       # Get alpha values (default to 1.0 if not set)
+#       raw_alpha <- if("raw_alpha" %in% names(pltParams)) pltParams[["raw_alpha"]] else 1.0
+#       smooth_alpha <- if("smooth_alpha" %in% names(pltParams)) pltParams[["smooth_alpha"]] else 1.0
+# 
+#       # Extract variables using flexible column names
+#       age <- data[[age_var]]
+#       value <- data[[value_var]]
+# 
+#       # Plot confidence interval if available
+#       if(!is.null(ci_upper_var) && !is.null(ci_lower_var)) {
+#         if(ci_upper_var %in% names(data) && ci_lower_var %in% names(data)) {
+#           upper <- data[[ci_upper_var]]
+#           lower <- data[[ci_lower_var]]
+# 
+#           ci_color <- adjustcolor(color_raw, alpha.f = pltParams[["alpha"]])
+#           polygon(c(age, rev(age)),
+#                   c(upper, rev(lower)),
+#                   col = ci_color, border = NA)
+#         }
+#       }
+# 
+#       # Plot the raw line with alpha
+#       raw_color_with_alpha <- adjustcolor(color_raw, alpha.f = raw_alpha)
+#       lines(age, value, col = raw_color_with_alpha, lwd = pltParams[["linewidths"]][1], lty = 1)
+# 
+#       # Plot first smooth curve if requested
+#       if(plot_smooth1 && !is.null(smooth1_var)) {
+#         if(smooth1_var %in% names(data)) {
+#           smooth1_value <- data[[smooth1_var]]
+#           smooth1_color_with_alpha <- adjustcolor(color_smooth1, alpha.f = smooth_alpha)
+#           lines(age, smooth1_value, col = smooth1_color_with_alpha, lwd = pltParams[["linewidths"]][2], lty = 1)
+#         }
+#       }
+# 
+#       # Plot second smooth curve if requested
+#       if(plot_smooth2 && !is.null(smooth2_var)) {
+#         if(smooth2_var %in% names(data)) {
+#           smooth2_value <- data[[smooth2_var]]
+#           smooth2_color_with_alpha <- adjustcolor(color_smooth2, alpha.f = smooth_alpha)
+#           lines(age, smooth2_value, col = smooth2_color_with_alpha, lwd = pltParams[["linewidths"]][3], lty = 1)
+#         }
+#       }
+#     }
+# 
+#     # Add legend if requested
+#     if (show_legend) {
+#       plot_xlim <- par("usr")[1:2]
+#       plot_ylim <- par("usr")[3:4]
+#       x_range <- diff(plot_xlim)
+#       y_range <- diff(plot_ylim)
+# 
+#       # Build legend based on what's being plotted
+#       legend_labels <- names(data_list)
+#       legend_colors <- pltParams[["colors"]]["raw", names(data_list)]
+#       legend_lwd <- rep(pltParams[["linewidths"]][1], length(data_list))
+# 
+#       if(plot_smooth1 && !is.null(smooth1_var)) {
+#         # Add first smooth curve entries to legend
+#         smooth1_labels <- paste0(names(data_list), " (", smooth1_label, ")")
+#         legend_labels <- c(legend_labels, smooth1_labels)
+#         legend_colors <- c(legend_colors, pltParams[["colors"]]["smooth1", names(data_list)])
+#         legend_lwd <- c(legend_lwd, rep(pltParams[["linewidths"]][2], length(data_list)))
+#       }
+# 
+#       if(plot_smooth2 && !is.null(smooth2_var)) {
+#         # Add second smooth curve entries to legend
+#         smooth2_labels <- paste0(names(data_list), " (", smooth2_label, ")")
+#         legend_labels <- c(legend_labels, smooth2_labels)
+#         legend_colors <- c(legend_colors, pltParams[["colors"]]["smooth2", names(data_list)])
+#         legend_lwd <- c(legend_lwd, rep(pltParams[["linewidths"]][3], length(data_list)))
+#       }
+# 
+#       legend(x = plot_xlim[1] + 0.02*x_range,
+#              y = plot_ylim[4] - 0.02*y_range,
+#              legend = legend_labels,
+#              col = legend_colors,
+#              lwd = legend_lwd,
+#              bty = "n",
+#              cex = text_size_multiplier)
+#     }
+#   }
+# 
+#   # Create plot for display
+#   create_single_plot(show_legend = TRUE, show_xaxis = TRUE, yaxis_right = FALSE)
+# 
+#   # Save all variants if requested
+#   if (printOn && save_variants) {
+# 
+#     variants <- list(
+#       list(name = "", show_legend = TRUE, show_xaxis = TRUE, yaxis_right = FALSE),
+#       list(name = "_noLeg", show_legend = FALSE, show_xaxis = TRUE, yaxis_right = FALSE),
+#       list(name = "_noX", show_legend = FALSE, show_xaxis = FALSE, yaxis_right = FALSE),
+#       list(name = "_noX_Yright", show_legend = FALSE, show_xaxis = FALSE, yaxis_right = TRUE),
+#       list(name = "_noLeg_Yright", show_legend = FALSE, show_xaxis = TRUE, yaxis_right = TRUE)
+#     )
+# 
+#     for (variant in variants) {
+#       plot_filename <- file.path(print_dir, paste0(fname_prefix, variant$name, ".png"))
+# 
+#       if (save_transparent) {
+#         png(plot_filename, width = fig_w, height = fig_h, units = "in", res = 600, bg = "transparent")
+#       } else {
+#         png(plot_filename, width = fig_w, height = fig_h, units = "in", res = 600, bg = "white")
+#       }
+# 
+#       create_single_plot(show_legend = variant$show_legend,
+#                          show_xaxis = variant$show_xaxis,
+#                          yaxis_right = variant$yaxis_right)
+#       dev.off()
+#     }
+# 
+#     message("Saved ", length(variants), " variants")
+#   }
+# }
 
 plot_timeseries <- function(data_list, pltParams,
                             age_var = "year",           # Name of age/time column
@@ -98,11 +375,11 @@ plot_timeseries <- function(data_list, pltParams,
                             fname_prefix = "timeseries",
                             save_transparent = TRUE,
                             save_variants = TRUE) {
-
+  
   # Set up y-limits and x-limits
   xlims <- c(pltParams[["xmin"]], pltParams[["xmax"]])
   ylims <- c(pltParams[["ymin"]], pltParams[["ymax"]])
-
+  
   # Create print directory
   if(is.null(save_path)) {
     print_dir <- output_dir
@@ -110,12 +387,12 @@ plot_timeseries <- function(data_list, pltParams,
     print_dir <- save_path
   }
   dir.create(print_dir, recursive = TRUE, showWarnings = FALSE)
-
+  
   # Function to create a single plot with options
   create_single_plot <- function(show_legend = TRUE,
                                  show_xaxis = TRUE,
                                  yaxis_right = FALSE) {
-
+    
     # Set margins based on options
     if (yaxis_right && !show_xaxis) {
       par(mar = c(1, 1, 1, 4), cex = 0.75 * text_size_multiplier)
@@ -126,12 +403,12 @@ plot_timeseries <- function(data_list, pltParams,
     } else {
       par(mar = c(5, 4, 4, 2), cex = 0.75 * text_size_multiplier)
     }
-
+    
     # Determine axis parameters
     yaxt_param <- if(yaxis_right) "n" else "s"
     xaxt_param <- if(!show_xaxis) "n" else "s"
     bty_param <- if(!show_xaxis) "n" else "o"
-
+    
     plot(NA, type = "n", xlim = xlims, ylim = ylims,
          xlab = if(show_xaxis) "Year (CE)" else "",
          ylab = if(!yaxis_right) ylab else "",
@@ -139,102 +416,133 @@ plot_timeseries <- function(data_list, pltParams,
          yaxt = yaxt_param,
          xaxt = xaxt_param,
          bty = bty_param)
-
+    
     # Add y-axis on right if needed
     if(yaxis_right) {
       axis(4, las = 1)
       mtext(ylab, side = 4, line = 3, cex = 0.75 * text_size_multiplier)
     }
-
+    
     # For plots without x-axis, manually draw only the y-axis line
     if(!show_xaxis) {
       usr <- par("usr")
-
+      
       if(yaxis_right) {
         lines(c(usr[2], usr[2]), c(usr[3], usr[4]), col = "black", lwd = 1)
       } else {
         lines(c(usr[1], usr[1]), c(usr[3], usr[4]), col = "black", lwd = 1)
       }
     }
-
+    
     # Add major and minor ticks to x-axis if shown
     if(show_xaxis) {
       major_ticks <- pretty(xlims)
       minor_ticks <- unlist(lapply(1:(length(major_ticks) - 1), function(k) {
         seq(major_ticks[k], major_ticks[k + 1], length.out = 6)[-c(1, 6)]
       }))
-
+      
       axis(side = 1, at = major_ticks, labels = TRUE)
       axis(side = 1, at = minor_ticks, labels = FALSE, tcl = -0.3)
       axis(side = 3, at = major_ticks, labels = FALSE, tcl = 0.5)
       axis(side = 3, at = minor_ticks, labels = FALSE, tcl = 0.25)
     }
-
+    
     # Plot data
     for(dataset_name in names(data_list)) {
       data <- data_list[[dataset_name]]
-
+      
       # Get colors for raw and smooth curves
       color_raw <- pltParams[["colors"]]["raw", dataset_name]
       color_smooth1 <- pltParams[["colors"]]["smooth1", dataset_name]
       color_smooth2 <- pltParams[["colors"]]["smooth2", dataset_name]
-
+      
       # Get alpha values (default to 1.0 if not set)
       raw_alpha <- if("raw_alpha" %in% names(pltParams)) pltParams[["raw_alpha"]] else 1.0
       smooth_alpha <- if("smooth_alpha" %in% names(pltParams)) pltParams[["smooth_alpha"]] else 1.0
-
+      
       # Extract variables using flexible column names
       age <- data[[age_var]]
       value <- data[[value_var]]
-
+      
       # Plot confidence interval if available
       if(!is.null(ci_upper_var) && !is.null(ci_lower_var)) {
         if(ci_upper_var %in% names(data) && ci_lower_var %in% names(data)) {
           upper <- data[[ci_upper_var]]
           lower <- data[[ci_lower_var]]
-
-          ci_color <- adjustcolor(color_raw, alpha.f = pltParams[["alpha"]])
-          polygon(c(age, rev(age)),
-                  c(upper, rev(lower)),
-                  col = ci_color, border = NA)
+          
+          # Filter out NAs for CI polygon
+          valid_idx <- !is.na(age) & !is.na(upper) & !is.na(lower)
+          if(sum(valid_idx) > 0) {
+            age_valid <- age[valid_idx]
+            upper_valid <- upper[valid_idx]
+            lower_valid <- lower[valid_idx]
+            
+            ci_color <- adjustcolor(color_raw, alpha.f = pltParams[["alpha"]])
+            polygon(c(age_valid, rev(age_valid)),
+                    c(upper_valid, rev(lower_valid)),
+                    col = ci_color, border = NA)
+          }
         }
       }
-
-      # Plot the raw line with alpha
-      raw_color_with_alpha <- adjustcolor(color_raw, alpha.f = raw_alpha)
-      lines(age, value, col = raw_color_with_alpha, lwd = pltParams[["linewidths"]][1], lty = 1)
-
-      # Plot first smooth curve if requested
+      
+      # Plot the raw line with alpha - filter out NAs
+      valid_idx <- !is.na(age) & !is.na(value)
+      if(sum(valid_idx) > 0) {
+        age_valid <- age[valid_idx]
+        value_valid <- value[valid_idx]
+        
+        raw_color_with_alpha <- adjustcolor(color_raw, alpha.f = raw_alpha)
+        lines(age_valid, value_valid, col = raw_color_with_alpha, 
+              lwd = pltParams[["linewidths"]][1], lty = 1)
+      }
+      
+      # Plot first smooth curve if requested - filter out NAs
       if(plot_smooth1 && !is.null(smooth1_var)) {
         if(smooth1_var %in% names(data)) {
           smooth1_value <- data[[smooth1_var]]
-          smooth1_color_with_alpha <- adjustcolor(color_smooth1, alpha.f = smooth_alpha)
-          lines(age, smooth1_value, col = smooth1_color_with_alpha, lwd = pltParams[["linewidths"]][2], lty = 1)
+          
+          valid_idx <- !is.na(age) & !is.na(smooth1_value)
+          if(sum(valid_idx) > 0) {
+            age_valid <- age[valid_idx]
+            smooth1_valid <- smooth1_value[valid_idx]
+            
+            smooth1_color_with_alpha <- adjustcolor(color_smooth1, alpha.f = smooth_alpha)
+            lines(age_valid, smooth1_valid, col = smooth1_color_with_alpha, 
+                  lwd = pltParams[["linewidths"]][2], lty = 1)
+          }
         }
       }
-
-      # Plot second smooth curve if requested
+      
+      # Plot second smooth curve if requested - filter out NAs
       if(plot_smooth2 && !is.null(smooth2_var)) {
         if(smooth2_var %in% names(data)) {
           smooth2_value <- data[[smooth2_var]]
-          smooth2_color_with_alpha <- adjustcolor(color_smooth2, alpha.f = smooth_alpha)
-          lines(age, smooth2_value, col = smooth2_color_with_alpha, lwd = pltParams[["linewidths"]][3], lty = 1)
+          
+          valid_idx <- !is.na(age) & !is.na(smooth2_value)
+          if(sum(valid_idx) > 0) {
+            age_valid <- age[valid_idx]
+            smooth2_valid <- smooth2_value[valid_idx]
+            
+            smooth2_color_with_alpha <- adjustcolor(color_smooth2, alpha.f = smooth_alpha)
+            lines(age_valid, smooth2_valid, col = smooth2_color_with_alpha, 
+                  lwd = pltParams[["linewidths"]][3], lty = 1)
+          }
         }
       }
     }
-
+    
     # Add legend if requested
     if (show_legend) {
       plot_xlim <- par("usr")[1:2]
       plot_ylim <- par("usr")[3:4]
       x_range <- diff(plot_xlim)
       y_range <- diff(plot_ylim)
-
+      
       # Build legend based on what's being plotted
       legend_labels <- names(data_list)
       legend_colors <- pltParams[["colors"]]["raw", names(data_list)]
       legend_lwd <- rep(pltParams[["linewidths"]][1], length(data_list))
-
+      
       if(plot_smooth1 && !is.null(smooth1_var)) {
         # Add first smooth curve entries to legend
         smooth1_labels <- paste0(names(data_list), " (", smooth1_label, ")")
@@ -242,7 +550,7 @@ plot_timeseries <- function(data_list, pltParams,
         legend_colors <- c(legend_colors, pltParams[["colors"]]["smooth1", names(data_list)])
         legend_lwd <- c(legend_lwd, rep(pltParams[["linewidths"]][2], length(data_list)))
       }
-
+      
       if(plot_smooth2 && !is.null(smooth2_var)) {
         # Add second smooth curve entries to legend
         smooth2_labels <- paste0(names(data_list), " (", smooth2_label, ")")
@@ -250,7 +558,7 @@ plot_timeseries <- function(data_list, pltParams,
         legend_colors <- c(legend_colors, pltParams[["colors"]]["smooth2", names(data_list)])
         legend_lwd <- c(legend_lwd, rep(pltParams[["linewidths"]][3], length(data_list)))
       }
-
+      
       legend(x = plot_xlim[1] + 0.02*x_range,
              y = plot_ylim[4] - 0.02*y_range,
              legend = legend_labels,
@@ -260,13 +568,13 @@ plot_timeseries <- function(data_list, pltParams,
              cex = text_size_multiplier)
     }
   }
-
+  
   # Create plot for display
   create_single_plot(show_legend = TRUE, show_xaxis = TRUE, yaxis_right = FALSE)
-
+  
   # Save all variants if requested
   if (printOn && save_variants) {
-
+    
     variants <- list(
       list(name = "", show_legend = TRUE, show_xaxis = TRUE, yaxis_right = FALSE),
       list(name = "_noLeg", show_legend = FALSE, show_xaxis = TRUE, yaxis_right = FALSE),
@@ -274,30 +582,31 @@ plot_timeseries <- function(data_list, pltParams,
       list(name = "_noX_Yright", show_legend = FALSE, show_xaxis = FALSE, yaxis_right = TRUE),
       list(name = "_noLeg_Yright", show_legend = FALSE, show_xaxis = TRUE, yaxis_right = TRUE)
     )
-
+    
     for (variant in variants) {
       plot_filename <- file.path(print_dir, paste0(fname_prefix, variant$name, ".png"))
-
+      
       if (save_transparent) {
         png(plot_filename, width = fig_w, height = fig_h, units = "in", res = 600, bg = "transparent")
       } else {
         png(plot_filename, width = fig_w, height = fig_h, units = "in", res = 600, bg = "white")
       }
-
+      
       create_single_plot(show_legend = variant$show_legend,
                          show_xaxis = variant$show_xaxis,
                          yaxis_right = variant$yaxis_right)
       dev.off()
     }
-
+    
     message("Saved ", length(variants), " variants")
   }
 }
 
 
-
 # =============================== Load in data ================================ ####
 
+
+# ----------------------- Load in the inverted emissions ------------------------- #
 ice.model <- read.csv(file.path(data_dir, "Zhang_BB_emission_BB4CMIP_modeled.csv"), header = TRUE)
 
 # Get all column names except year_ce
@@ -332,6 +641,82 @@ ice.data.list <- lapply(emission_cols, function(col) {
 # Name the list elements with the original column names
 names(ice.data.list) <- emission_cols
 
+# ------------------------ Load in the ice core records -------------------------- #
+
+ice_core.data <- read.csv(file.path(data_dir, '1750_to_2010_global_rBC_deposition.csv'), header = TRUE)
+ice_core.meta <- read.csv(file.path(data_dir, '1750_to_2010_global_ice_core_array_information.csv'), header = TRUE)
+
+# Replace -999 with NA
+ice_core.data <- ice_core.data %>% 
+  mutate(across(everything(), ~na_if(., -999)))
+
+# Separate the ice core records into regions 
+ice_core.boreal_west_sites <- c("McCall.Glacier", "Eclipse")
+ice_core.boreal_east_sites <- c("Humboldt", "NGT.B19", "Tunu2013","Hans.Tausen","NEEM.2011.S1","NasaU", "Summit2010", "D4","ACT2", "ACT11d")
+ice_core.temperate_west_sites <- c("Upper.Fremont.Glacier")
+
+# Create lists of ice core data by region
+ice_core.boreal_west_list <- lapply(ice_core.boreal_west_sites, function(site) {
+  if(site %in% names(ice_core.data)) {
+    data.frame(
+      year_ce = ice_core.data$Year,
+      rBC_deposition = ice_core.data[[site]]
+    )
+  }
+})
+names(ice_core.boreal_west_list) <- ice_core.boreal_west_sites
+
+ice_core.boreal_east_list <- lapply(ice_core.boreal_east_sites, function(site) {
+  if(site %in% names(ice_core.data)) {
+    data.frame(
+      year_ce = ice_core.data$Year,
+      rBC_deposition = ice_core.data[[site]]
+    )
+  }
+})
+names(ice_core.boreal_east_list) <- ice_core.boreal_east_sites
+
+ice_core.temperate_west_list <- lapply(ice_core.temperate_west_sites, function(site) {
+  if(site %in% names(ice_core.data)) {
+    data.frame(
+      year_ce = ice_core.data$Year,
+      rBC_deposition = ice_core.data[[site]]
+    )
+  }
+})
+names(ice_core.temperate_west_list) <- ice_core.temperate_west_sites
+
+# Apply z-scoring to each region's ice core data
+ice_core.boreal_west_list <- zscore_normalize(ice_core.boreal_west_list)
+ice_core.boreal_east_list <- zscore_normalize(ice_core.boreal_east_list)
+ice_core.temperate_west_list <- zscore_normalize(ice_core.temperate_west_list)
+
+# Apply z-scoring to each region's ice core data
+ice_core.boreal_west_list <- zscore_normalize(ice_core.boreal_west_list)
+ice_core.boreal_east_list <- zscore_normalize(ice_core.boreal_east_list)
+ice_core.temperate_west_list <- zscore_normalize(ice_core.temperate_west_list)
+
+# Apply smoothing to each region's ice core data
+ice_core.boreal_west_list <- smooth_ice_core_series(ice_core.boreal_west_list,
+                                                    hw1 = smooth_params$hw1,
+                                                    hw2 = smooth_params$hw2,
+                                                    degree = smooth_params$degree,
+                                                    family = smooth_params$family)
+
+ice_core.boreal_east_list <- smooth_ice_core_series(ice_core.boreal_east_list,
+                                                    hw1 = smooth_params$hw1,
+                                                    hw2 = smooth_params$hw2,
+                                                    degree = smooth_params$degree,
+                                                    family = smooth_params$family)
+
+ice_core.temperate_west_list <- smooth_ice_core_series(ice_core.temperate_west_list,
+                                                       hw1 = smooth_params$hw1,
+                                                       hw2 = smooth_params$hw2,
+                                                       degree = smooth_params$degree,
+                                                       family = smooth_params$family)
+
+# ------------------------- Load in the burn scar data --------------------------- #
+
 scar.boreal_west <- read.csv(file.path(data_dir, "fire_scars_Boreal_NA_west.csv"), header = TRUE)
 scar.boreal_east <- read.csv(file.path(data_dir, "fire_scars_Boreal_NA_east.csv"), header = TRUE)
 scar.temperate_west <- read.csv(file.path(data_dir, "fire_scars_Temperate_NA_west.csv"), header = TRUE)
@@ -342,13 +727,29 @@ scar.list <- list(boreal_west = scar.boreal_west,
                   temperate_west = scar.temperate_west,
                   temperate_east = scar.temperate_east)
 
+
 # ======================= Create master list of lists ========================= ####
 
-data.full.list <- list(
-  ice.model = ice.model.list,
-  ice.data = ice.data.list,
-  scar = scar.list
-)
+# data.full.list <- list(
+#   ice.model = ice.model.list,
+#   ice.data = ice.data.list,
+#   scar = scar.list
+# )
+
+if(iceMode == 'inversion') {
+  data.full.list <- list(
+    ice.model = ice.model.list,
+    ice.data = ice.data.list,
+    scar = scar.list
+  )
+} else if(iceMode == 'raw') {
+  data.full.list <- list(
+    ice_core.boreal_west = ice_core.boreal_west_list,
+    ice_core.boreal_east = ice_core.boreal_east_list,
+    ice_core.temperate_west = ice_core.temperate_west_list,
+    scar = scar.list
+  )
+}
 
 # ============================ Set up plot params ============================= ####
 
@@ -457,6 +858,53 @@ pltParams.specific <- list(
     plot_smooth2 = FALSE
   ),
   
+  # Raw ice core data parameters
+  ice_core.boreal_west = list(
+    single_color = list(raw = "#A8D5F7", smooth1 = "#6EB1F1", smooth2 = "#1473CC"),  # Light to dark blue
+    ylims = list(default = c(-3, 3)),
+    ylab = "rBC deposition (z-score)",
+    fname_suffix = "ice_core_raw_zscore_smoothed",
+    age_var = "year_ce",
+    value_var = "rBC_deposition",
+    ci_upper_var = NULL,
+    ci_lower_var = NULL,
+    smooth1_var = "rBC_deposition_smooth1",
+    smooth2_var = "rBC_deposition_smooth2",
+    plot_smooth1 = TRUE,
+    plot_smooth2 = TRUE
+  ),
+  
+  ice_core.boreal_east = list(
+    single_color = list(raw = "#A8D5F7", smooth1 = "#6EB1F1", smooth2 = "#1473CC"),
+    ylims = list(default = c(-3, 3)),
+    ylab = "rBC deposition (z-score)",
+    fname_suffix = "ice_core_raw_zscore_smoothed",
+    age_var = "year_ce",
+    value_var = "rBC_deposition",
+    ci_upper_var = NULL,
+    ci_lower_var = NULL,
+    smooth1_var = "rBC_deposition_smooth1",
+    smooth2_var = "rBC_deposition_smooth2",
+    plot_smooth1 = TRUE,
+    plot_smooth2 = TRUE
+  ),
+  
+  ice_core.temperate_west = list(
+    single_color = list(raw = "#A8D5F7", smooth1 = "#6EB1F1", smooth2 = "#1473CC"),
+    ylims = list(default = c(-3, 3)),
+    ylab = "rBC deposition (z-score)",
+    fname_suffix = "ice_core_raw_zscore_smoothed",
+    age_var = "year_ce",
+    value_var = "rBC_deposition",
+    ci_upper_var = NULL,
+    ci_lower_var = NULL,
+    smooth1_var = "rBC_deposition_smooth1",
+    smooth2_var = "rBC_deposition_smooth2",
+    plot_smooth1 = TRUE,
+    plot_smooth2 = TRUE
+  ),
+  
+  
   # Fire scar parameters
   scar = list(
     colors = list(
@@ -537,16 +985,12 @@ if(smooth_scar_data){
   data.full.list$scar <- scar.list
 }
 
-# ========================= Define custom functions =========================== ####
-
-
-
 # ============================== Make the plot ================================ ####
 
 # Add a toggle for using single color
 use_single_color <- TRUE  # Set to TRUE to use single color per dataset
 
-# Loop through each dataset type (ice.model, ice.data, scar)
+# Loop through each dataset type (ice.model, ice.data, scar, OR ice_core regions)
 for(dataset_type in names(data.full.list)) {
   
   cat("\n=== Processing", dataset_type, "===\n")
@@ -557,80 +1001,64 @@ for(dataset_type in names(data.full.list)) {
   # Get specific parameters for this dataset type
   specific_params <- pltParams.specific[[dataset_type]]
   
-  # Loop through each region in this dataset type
-  for(region_name in names(region_list)) {
+  # Check if this is raw ice core data (multiple sites per region)
+  if(grepl("ice_core", dataset_type)) {
     
-    cat("Creating plot for:", region_name, "\n")
+    # For raw ice core mode: plot all sites in the region together
+    cat("Creating plot for region:", dataset_type, "with", length(region_list), "sites\n")
     
-    # Create the data list for plot_timeseries (needs to be a list with named elements)
-    data_list <- list(region_list[[region_name]])
-    names(data_list) <- region_name
+    # Use the entire list of sites for this region
+    data_list <- region_list
+    
+    # Remove any NULL entries (sites not in data)
+    data_list <- data_list[!sapply(data_list, is.null)]
+    
+    if(length(data_list) == 0) {
+      cat("No data available for", dataset_type, ", skipping...\n")
+      next
+    }
     
     # Combine base parameters with specific parameters
     pltParams <- pltParams.base
     
-    # Choose between single color or region-specific colors
+    # Use default ylims for ice core data
+    pltParams[["ymin"]] <- specific_params$ylims$default[1]
+    pltParams[["ymax"]] <- specific_params$ylims$default[2]
+    
+    # Create colors for each site
+    # Create colors for each site
+    num_sites <- length(data_list)
     if(use_single_color) {
-      # Special handling for scar data with smoothing
-      if(dataset_type == "scar" && smooth_scar_data) {
-        
-        # Create a dataframe with proper structure (rows = line types, cols = region)
-        single_color_df <- data.frame(
-          region = c(specific_params$single_color$raw,
-                     specific_params$single_color$smooth1,
-                     specific_params$single_color$smooth2)
-        )
-        colnames(single_color_df) <- region_name
-        rownames(single_color_df) <- c("raw", "smooth1", "smooth2")
-        pltParams[["colors"]] <- single_color_df
-        
-        # Set alpha for raw data
-        pltParams[["raw_alpha"]] <- 0.25
-        pltParams[["smooth_alpha"]] <- 1.0
-        
-      } else {
-        # Standard single color dataframe
-        single_color_value <- if(is.list(specific_params$single_color)) {
-          specific_params$single_color$raw
-        } else {
-          specific_params$single_color
-        }
-        
-        single_color_df <- data.frame(
-          col = rep(single_color_value, 3)
-        )
-        colnames(single_color_df) <- region_name
-        rownames(single_color_df) <- c("raw", "smooth1", "smooth2")
-        pltParams[["colors"]] <- single_color_df
-        
-        # Default alpha values
-        pltParams[["raw_alpha"]] <- 1.0
-        pltParams[["smooth_alpha"]] <- 1.0
-      }
+      # Use single color scheme (light for raw, darker for smoothed)
+      colors_raw <- rep(specific_params$single_color$raw, num_sites)
+      colors_smooth1 <- rep(specific_params$single_color$smooth1, num_sites)
+      colors_smooth2 <- rep(specific_params$single_color$smooth2, num_sites)
     } else {
-      # Use region-specific colors
-      pltParams[["colors"]] <- specific_params$colors[[region_name]]
-      pltParams[["raw_alpha"]] <- 1.0
-      pltParams[["smooth_alpha"]] <- 1.0
+      # Use color gradient for different sites
+      colors_raw <- colorRampPalette(c("#A8D5F7", "#87CEEB"))(num_sites)
+      colors_smooth1 <- colorRampPalette(c("#6EB1F1", "#4A9FD8"))(num_sites)
+      colors_smooth2 <- colorRampPalette(c("#1473CC", "#0D5A9E"))(num_sites)
     }
     
-    # Set region-specific y-limits
-    pltParams[["ymin"]] <- specific_params$ylims[[region_name]][1]
-    pltParams[["ymax"]] <- specific_params$ylims[[region_name]][2]
+    # Create color dataframe (rows = line types, cols = sites)
+    single_color_df <- data.frame(
+      raw = colors_raw,
+      smooth1 = colors_smooth1,
+      smooth2 = colors_smooth2
+    )
+    single_color_df <- as.data.frame(t(single_color_df))
+    colnames(single_color_df) <- names(data_list)
+    rownames(single_color_df) <- c("raw", "smooth1", "smooth2")
+    pltParams[["colors"]] <- single_color_df
+    
+    # Set alpha values
+    pltParams[["raw_alpha"]] <- 0.25
+    pltParams[["smooth_alpha"]] <- 1.0
     
     # Create filename prefix
-    if(use_single_color) {
-      fname_prefix <- paste0("BB_", specific_params$fname_suffix, "_", region_name, "_singlecolor")
-    } else {
-      fname_prefix <- paste0("BB_", specific_params$fname_suffix, "_", region_name)
-    }
+    fname_prefix <- paste0(dataset_type, "_", specific_params$fname_suffix)
     
-    # Add smooth suffix to filename if smoothing is enabled for scar data
-    if(dataset_type == "scar" && smooth_scar_data) {
-      fname_prefix <- paste0(fname_prefix, "_smoothed")
-    }
-    
-    # Create the plots with dataset-specific variable names
+    # Create the plots
     plot_timeseries(data_list, 
                     pltParams, 
                     age_var = specific_params$age_var,
@@ -646,6 +1074,100 @@ for(dataset_type in names(data.full.list)) {
                     fname_prefix = fname_prefix,
                     save_transparent = TRUE,
                     save_variants = TRUE)
+    
+  } else {
+    
+    # Original behavior for inversion mode and scar data
+    # Loop through each region in this dataset type
+    for(region_name in names(region_list)) {
+      
+      cat("Creating plot for:", region_name, "\n")
+      
+      # Create the data list for plot_timeseries (needs to be a list with named elements)
+      data_list <- list(region_list[[region_name]])
+      names(data_list) <- region_name
+      
+      # Combine base parameters with specific parameters
+      pltParams <- pltParams.base
+      
+      # Choose between single color or region-specific colors
+      if(use_single_color) {
+        # Special handling for scar data with smoothing
+        if(dataset_type == "scar" && smooth_scar_data) {
+          
+          # Create a dataframe with proper structure (rows = line types, cols = region)
+          single_color_df <- data.frame(
+            region = c(specific_params$single_color$raw,
+                       specific_params$single_color$smooth1,
+                       specific_params$single_color$smooth2)
+          )
+          colnames(single_color_df) <- region_name
+          rownames(single_color_df) <- c("raw", "smooth1", "smooth2")
+          pltParams[["colors"]] <- single_color_df
+          
+          # Set alpha for raw data
+          pltParams[["raw_alpha"]] <- 0.25
+          pltParams[["smooth_alpha"]] <- 1.0
+          
+        } else {
+          # Standard single color dataframe
+          single_color_value <- if(is.list(specific_params$single_color)) {
+            specific_params$single_color$raw
+          } else {
+            specific_params$single_color
+          }
+          
+          single_color_df <- data.frame(
+            col = rep(single_color_value, 3)
+          )
+          colnames(single_color_df) <- region_name
+          rownames(single_color_df) <- c("raw", "smooth1", "smooth2")
+          pltParams[["colors"]] <- single_color_df
+          
+          # Default alpha values
+          pltParams[["raw_alpha"]] <- 1.0
+          pltParams[["smooth_alpha"]] <- 1.0
+        }
+      } else {
+        # Use region-specific colors
+        pltParams[["colors"]] <- specific_params$colors[[region_name]]
+        pltParams[["raw_alpha"]] <- 1.0
+        pltParams[["smooth_alpha"]] <- 1.0
+      }
+      
+      # Set region-specific y-limits
+      pltParams[["ymin"]] <- specific_params$ylims[[region_name]][1]
+      pltParams[["ymax"]] <- specific_params$ylims[[region_name]][2]
+      
+      # Create filename prefix
+      if(use_single_color) {
+        fname_prefix <- paste0("BB_", specific_params$fname_suffix, "_", region_name, "_singlecolor")
+      } else {
+        fname_prefix <- paste0("BB_", specific_params$fname_suffix, "_", region_name)
+      }
+      
+      # Add smooth suffix to filename if smoothing is enabled for scar data
+      if(dataset_type == "scar" && smooth_scar_data) {
+        fname_prefix <- paste0(fname_prefix, "_smoothed")
+      }
+      
+      # Create the plots with dataset-specific variable names
+      plot_timeseries(data_list, 
+                      pltParams, 
+                      age_var = specific_params$age_var,
+                      value_var = specific_params$value_var,
+                      ci_upper_var = specific_params$ci_upper_var,
+                      ci_lower_var = specific_params$ci_lower_var,
+                      smooth1_var = specific_params$smooth1_var,
+                      smooth2_var = specific_params$smooth2_var,
+                      plot_smooth1 = specific_params$plot_smooth1,
+                      plot_smooth2 = specific_params$plot_smooth2,
+                      ylab = specific_params$ylab,
+                      save_path = output_dir,
+                      fname_prefix = fname_prefix,
+                      save_transparent = TRUE,
+                      save_variants = TRUE)
+    }
   }
 }
 

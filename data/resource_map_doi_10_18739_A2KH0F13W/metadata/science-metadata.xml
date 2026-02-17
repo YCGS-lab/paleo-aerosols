@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="urn:uuid:d61933ad-c3c8-4e94-8e33-0b6d460dee31" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="knb">
+  <dataset id="urn-uuid-2d04a481-3117-444a-a39d-8f24d314bc59">
+    <title>1750 to 2010 Refractory Black Carbon Deposition from a Global Ice-Core Array, Arctic, Antarctic, and alpine regions</title>
+    <creator id="7327826463135900">
+      <individualName>
+        <givenName>Joseph</givenName>
+        <surName>McConnell</surName>
+      </individualName>
+      <organizationName>Desert Research Institute</organizationName>
+      <positionName>Research Professor</positionName>
+      <address>
+        <deliveryPoint>2215 Raggio Parkway</deliveryPoint>
+        <city>Reno</city>
+        <administrativeArea>NV</administrativeArea>
+        <postalCode>89512</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">(775) 772 - 2418</phone>
+      <electronicMailAddress>joe.mcconnell@dri.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-9051-5240</userId>
+    </creator>
+    <creator id="1593832355605584">
+      <individualName>
+        <givenName>Nathan</givenName>
+        <surName>Chellman</surName>
+      </individualName>
+      <organizationName>Desert Research Institute</organizationName>
+      <positionName>Assistant Research Professor</positionName>
+      <address>
+        <deliveryPoint>2215 Raggio Parkway</deliveryPoint>
+        <city>Reno</city>
+        <administrativeArea>NV</administrativeArea>
+        <postalCode>89512</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">(775) 673 - 7424</phone>
+      <electronicMailAddress>nchellma@dri.edu</electronicMailAddress>
+    </creator>
+    <pubDate>2024</pubDate>
+    <abstract>
+      <para>Refractory black carbon (rBC) aerosols in air and precipitation result from incomplete combustion. Prior to 18th century industrialization, the primary emission sources were wildfires and agricultural fires. After industrialization, fossil fuel burning has become an important emission source as well. Because these aerosols are import contributors to Earth’s radiative forcing both in the air and when deposited to bright surfaces such as fresh snow, quantifying past rBC emissions is critical to accurate Earth System Modeling.  This data set contains 1750 to 2010 annual rBC depositional fluxes measured in a global array of 31, mostly polar ice cores. They were used (Zhang et al., Nature Communications, 2024) to reconstruct atmospheric rBC emissions using the atmospheric chemical transport GEOS-Chem. Details on the rBC measurement methods and chronology development are provided in the associated references for the individual ice core records.</para>
+    </abstract>
+    <keywordSet>
+      <keyword>EARTH SCIENCE &gt; PALEOCLIMATE &gt; ICE CORE RECORDS &gt; PARTICULATE MATTER</keyword>
+      <keyword>EARTH SCIENCE &gt; ATMOSPHERE &gt; AEROSOLS &gt; DUST/ASH/SMOKE</keyword>
+      <keyword>EARTH SCIENCE &gt; ATMOSPHERE &gt; AEROSOLS &gt; BLACK CARBON</keyword>
+      <keyword>EARTH SCIENCE &gt; CRYOSPHERE &gt; SNOW/ICE &gt; ALBEDO</keyword>
+      <keywordThesaurus>None</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+      <para>This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Global array of ice core records from Arctic, Antarctic, and alpine  regions.</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-143.8</westBoundingCoordinate>
+          <eastBoundingCoordinate>111.6</eastBoundingCoordinate>
+          <northBoundingCoordinate>82.5</northBoundingCoordinate>
+          <southBoundingCoordinate>-82.1</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>1750</calendarDate>
+            <time>00:00:00</time>
+          </beginDate>
+          <endDate>
+            <calendarDate>2010</calendarDate>
+            <time>00:00:00</time>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <annotation>
+      <propertyURI label="theme">http://www.w3.org/ns/dcat#theme</propertyURI>
+      <valueURI label="Glaciology">https://purl.dataone.org/odo/ADCAD_00079</valueURI>
+    </annotation>
+    <annotation>
+      <propertyURI label="theme">http://www.w3.org/ns/dcat#theme</propertyURI>
+      <valueURI label="Cryology">https://purl.dataone.org/odo/ADCAD_00080</valueURI>
+    </annotation>
+    <annotation>
+      <propertyURI label="theme">http://www.w3.org/ns/dcat#theme</propertyURI>
+      <valueURI label="Atmospheric Science">https://purl.dataone.org/odo/ADCAD_00039</valueURI>
+    </annotation>
+    <annotation>
+      <propertyURI label="Data Sensitivity Category">http://purl.dataone.org/odo/SENSO_00000005</propertyURI>
+      <valueURI label="Non-sensitive data">http://purl.dataone.org/odo/SENSO_00000002</valueURI>
+    </annotation>
+    <contact id="6721239812120441">
+      <individualName>
+        <givenName>Joseph</givenName>
+        <surName>McConnell</surName>
+      </individualName>
+      <organizationName>Desert Research Institute</organizationName>
+      <positionName>Research Professor</positionName>
+      <address>
+        <deliveryPoint>2215 Raggio Parkway</deliveryPoint>
+        <city>Reno</city>
+        <administrativeArea>NV</administrativeArea>
+        <postalCode>89512</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">(775) 772 - 2417</phone>
+      <electronicMailAddress>joe.mcconnell@dri.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-9051-5240</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <section>
+            <title>Ethical Research Practices</title>
+            <para>Although permits may have been required to collect the ice cores and interactions with local communities and authorities may have occurred at that time, the measurements reported here were made on archived ice-core samples many years after collection and did not involve fieldwork. Therefore, no permits or institutional review board approvals were required for this research, and there were no interactions with local communities or authorities. In addition, this research did not involve any sensitive materials or data (e.g., archaeological or other historical materials, human or animal remains or subjects) and had no impact on local or nearby communities.</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <para>These measurements were made on samples from 31 recently collected cores from the Arctic and Antarctic, or on samples from archived ice cores obtained from U.S. and international institutions and universities.</para>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <para>For the 29 rBC records developed at the Desert Research Institute, measurements were made on contiguous longitudinal samples cut from the ice cores. For the 2 rBC records made at the Paul Sch</para>
+        </description>
+      </methodStep>
+      <sampling>
+        <studyExtent>
+          <description>
+            <para>The ice cores in this global area were collected from 31 Arctic, Antarctic, and alpine sites. For the 29 ice cores analyzed at the Desert Research Institute, measurements were made  on a continuous ice core melter system with an effective depth resolution of 1 to 1.5 centimeter(cm). Ice cores from 2 sites were analyzed at the Paul Scherrer Institut in Switzerland using discrete sampling techniques with ~1.5 cm depth resolution.</para>
+          </description>
+        </studyExtent>
+        <samplingDescription>
+          <para>For continuous rBC measurements at the Desert Research Institute, longitudinal samples with a cross section of ~0.032 by ~0.032 meter (m) cores were cut from the ice cores at the 29 drill sites and the ends decontaminated by scraping with a precleaned ceramic knife. The samples were analyzed for rBC using the continuous ice-core analytical system at the Desert Research Institute (DRI) using methods described in detail elsewhere (McConnell et al., 2007, Science, doi:10.1126/science.1144856; Bisiaux et al., 2012, Atmos Chem Phys, doi:10.5194/acp-12-4109-2012; McConnell et al., 2021, Nature, doi:10.1038/s41586-021-03858-9). In brief, the DRI BC method used here coupled a Cetac U5000AT Ultrasonic Nebulizer (USN) or an APEX-Q (Elemental Scientific) Desolating Nebulizer to a Single Particle Soot Photometer (SP2; Droplet Measurement Technologies, Boulder, CO, USA) for high-time-resolution, continuous determinations of rBC concentration in real time since measurements were made approximately 3 minutes after the ice core was melted. Five BC standards were made from sequential dilutions of Cabojet 200, ranging in concentration from ~0.1 to ~6.0 nanograms per gram (ng g−1). Standards were measured at the beginning and end of each analysis day, with ~1.0 ng g−1 quality control standards analyzed every ~2.5 hours (h) during routine pauses in the continuous ice core analyses for calibration of the analytical system. The rBC measurements were combined to annual averages and fluxes calculated following standard procedures (i.e., each annual average concentration was multiplied by the corresponding annual water-equivalent accumulation). rBC flux uncertainties in the ice core records are estimated to be less than 5%.</para>
+          <para>For the discrete measurements made at the Paul Scherrer Institute, analytical details are given in Sigl et al., 2018, The Cryosphere, doi:10.5194/tc-12-3311-2018.</para>
+        </samplingDescription>
+      </sampling>
+    </methods>
+    <project>
+      <title>Collaborative Research:  P2C2--ICECAP (Ice Age Chemistry and Proxies) Phase 3: Investigating Fire Activity and its Implications for Climate Across Multiple Timescales</title>
+      <title>Collaborative Research:  P2C2--ICECAP (ICE age Chemistry And Proxies) Phase-4: Studying Aerosol Transport, Forcing, and Climate Feedbacks during the Common and Last Glacial Eras</title>
+      <title>Collaborative Proposal:  Aerosol Concentrations, Sources and Transport Pathways within the Arctic Polar Dome during Recent Millennia</title>
+      <title>Biomass Burning, Dust, Sea Salt, Volcanic &amp;amp; Pollution Aerosols in the Arctic during the Last 2 Millennia: High Resolution Aerosol Records from NEEM &amp;amp; an Aray of Archived Ic</title>
+      <title>Collaborative Research: Integrated High Resolution Chemical and Biological Measurements on the Deep WAIS Divide Core</title>
+      <title>Collaborative Research: Norwegian-United States IPY Scientific Traverse: Climate Variability and Glaciology in East Antarctica</title>
+      <personnel>
+        <individualName>
+          <surName>J. F Lamarque</surName>
+        </individualName>
+        <role>coPrincipalInvestigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Peter R</givenName>
+          <surName>Edwards</surName>
+        </individualName>
+        <role>coPrincipalInvestigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Joseph</givenName>
+          <surName>McConnell</surName>
+        </individualName>
+        <role>principalInvestigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Nathan J</givenName>
+          <surName>Chellman</surName>
+        </individualName>
+        <role>principalInvestigator</role>
+      </personnel>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>1702830</awardNumber>
+        <title>Collaborative Research:  P2C2--ICECAP (Ice Age Chemistry and Proxies) Phase 3: Investigating Fire Activity and its Implications for Climate Across Multiple Timescales</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1702830</awardUrl>
+      </award>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>2102917</awardNumber>
+        <title>Collaborative Research:  P2C2--ICECAP (ICE age Chemistry And Proxies) Phase-4: Studying Aerosol Transport, Forcing, and Climate Feedbacks during the Common and Last Glacial Eras</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=2102917</awardUrl>
+      </award>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>1023672</awardNumber>
+        <title>Collaborative Proposal:  Aerosol Concentrations, Sources and Transport Pathways within the Arctic Polar Dome during Recent Millennia</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1023672</awardUrl>
+      </award>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>0909541</awardNumber>
+        <title>Biomass Burning, Dust, Sea Salt, Volcanic &amp;amp; Pollution Aerosols in the Arctic during the Last 2 Millennia: High Resolution Aerosol Records from NEEM &amp;amp; an Aray of Archived Ic</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=0909541</awardUrl>
+      </award>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>0839093</awardNumber>
+        <title>Collaborative Research: Integrated High Resolution Chemical and Biological Measurements on the Deep WAIS Divide Core</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=0839093</awardUrl>
+      </award>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://doi.org/10.13039/100000001</funderIdentifier>
+        <awardNumber>0538416</awardNumber>
+        <title>Collaborative Research: Norwegian-United States IPY Scientific Traverse: Climate Variability and Glaciology in East Antarctica</title>
+        <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=0538416</awardUrl>
+      </award>
+    </project>
+    <dataTable id="urn-uuid-d1871774-2fce-4ffa-bd8a-575fc173bbeb">
+      <entityName>1750_to_2010_global_ice_core_array_information.csv</entityName>
+      <entityDescription>Site information for the 31 ice cores in the global rBC deposition array. Contains location and other details for each ice core.</entityDescription>
+      <physical>
+        <objectName>1750_to_2010_global_ice_core_array_information.csv</objectName>
+        <size unit="bytes">1316</size>
+        <authentication method="MD5">e3fe3eebdbb993ee563ac3b0a2321f9b</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>
+</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://cn.dataone.org/cn/v2/resolve/urn:uuid:d1871774-2fce-4ffa-bd8a-575fc173bbeb</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute id="wcG0A88PSHyi9IyRsGgWqMxmcxRsBv">
+          <attributeName>Ice core site</attributeName>
+          <attributeLabel>Ice core name</attributeLabel>
+          <attributeDefinition>Ice core site name.</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Any text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>No missing fields</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="site identifier">http://purl.dataone.org/odo/ECSO_00002997</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="dpQBL3uzVUbuz79JnVZVms7JSOQPkh">
+          <attributeName>Latitude, oN</attributeName>
+          <attributeLabel>Site latitude</attributeLabel>
+          <attributeDefinition>Ice core site latitude</attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <standardUnit>degree</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>No missing fields</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="latitude coordinate">http://purl.dataone.org/odo/ECSO_00002130</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="T9TpX8SxpMuDPL43sHiH5g3TgB9auI">
+          <attributeName>Longitude, oE</attributeName>
+          <attributeLabel>Site Longitude</attributeLabel>
+          <attributeDefinition>Site latitude</attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <standardUnit>degree</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>No missing fields</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="latitude coordinate">http://purl.dataone.org/odo/ECSO_00002130</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="rk8yTrQIcT5EtLUT1kv5QQIuGF68HW">
+          <attributeName>Elevation, m</attributeName>
+          <attributeLabel>Site Elevation</attributeLabel>
+          <attributeDefinition>Site elevation in m.</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>No missing fields</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="elevation">http://purl.dataone.org/odo/ECSO_00001567</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="kCF5SeKBJpfvSugIEFc0US0DiWDIES">
+          <attributeName>Previous rBC references</attributeName>
+          <attributeLabel>References for previous presentations or uses of the rBC measurements in this core, if any.</attributeLabel>
+          <attributeDefinition>References for previous presentations or uses of the rBC measurements in this core, if any. Note that in many cases, rBC data from a shorter time period (e.g., 1850 to 2010) has been reported previously.</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Any text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>No missing fields</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="Ku3JI9mzAuRJT8iSi9iulRMp31p2Nk">
+          <attributeName>Chronology reference</attributeName>
+          <attributeLabel>Reference in which the relevant ice core chronology was reported</attributeLabel>
+          <attributeDefinition>Reference in which the relevant ice core chronology was reported</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Any text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+    </dataTable>
+    <dataTable id="urn-uuid-a09e3942-6eef-4a4b-889e-9e1401fdacd5">
+      <entityName>1750_to_2010_global_rBC_deposition.csv</entityName>
+      <entityDescription>Records of refractory black carbon (rBC) deposition measured in an array of 31 ice cores from Arctic, Antarctic, and alpine sites. Contains annual 1750 to 2010 rBC deposition in ug/m2/y. Note that some records did not extend over the entire 260-year period.</entityDescription>
+      <physical>
+        <objectName>1750_to_2010_global_rBC_deposition.csv</objectName>
+        <size unit="bytes">48350</size>
+        <authentication method="MD5">4caf9bef10c975d2e3bc4994db79499e</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>
+</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://cn.dataone.org/cn/v2/resolve/urn:uuid:a09e3942-6eef-4a4b-889e-9e1401fdacd5</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute id="vI7VBmBFRUK6mmFHGdQksl7vBCXlWK">
+          <attributeName>Year</attributeName>
+          <attributeLabel>Year CE</attributeLabel>
+          <attributeDefinition>Year in which the snow was deposited.</attributeDefinition>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>N/A</code>
+            <codeExplanation>Each year between 1750 and 2010 is listed</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="year of measurement">http://purl.dataone.org/odo/ECSO_00002050</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="d6IoKSn14uQ0Cksro5Jlvei9tb5mHz">
+          <attributeName>THW</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the THW ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="FRL44ui6dNTJl8Z8P9FVpFqJOe51yL">
+          <attributeName>WD</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the WD ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="d2Gw3FwtXZuuBpOtEZc21kgmQMbyM9">
+          <attributeName>DIV</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the DIV ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="5C94p0F0iyxrB1cfQlLTaq4x6VfypJ">
+          <attributeName>PIG</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the PIG ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="lUPyHNyNkH22eAIaQs9x2K0iT6DES3">
+          <attributeName>Gomez</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Gomez ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="9Nhl2VgP1T0CDXqCMLzM7hrDqEkd0r">
+          <attributeName>JRIBAS</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the JRIBAS ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="7volR6BdZVKs3Q97ezuUTdlRnWtXAW">
+          <attributeName>B40</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the B40 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="1faK03V89heZgMCiW8E4BKt6IfPBXT">
+          <attributeName>NORUS_8_7</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NORUS_8_7ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="xdbe147xrXIh6pxaSLOTVQL8FVCQKz">
+          <attributeName>NORUS_7_2</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NORUS_7_2 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="S8ovTnRRT57iLwEpJCCJS38qTBPP1Q">
+          <attributeName>B53</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the B53 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="Maa4hrZgAiiGE2LosCBWOnfwG0DowN">
+          <attributeName>NORUS_7_5</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NORUS_7_5 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="0AxSrSbANhmQcItMOJoNgtxUpXBnmP">
+          <attributeName>NORUS_7_7</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NORUS_7_7 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="vq4qMcFxbBqnDJyFaZVcnzLdKxsyO5">
+          <attributeName>Aurora_Basin</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Aurora Basin ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="QITSWeOMF23ec5I9WkUdhqMiIfQ8xx">
+          <attributeName>W10</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the W10 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="Z7KSka5MmxtSvqDbO44LubeJM2zwyo">
+          <attributeName>Illimani</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Illimani ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="gIqRV76fnQKCgzTrWVvZxTBQOLEsZE">
+          <attributeName>D4</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the D4 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="yRykLFOCUUXn5OpEgno2Pcve3Q0Xwf">
+          <attributeName>Summit2010</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Summit2010 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="K2u9sRTqk8XZp67cKcz8v78i3ARCcu">
+          <attributeName>NEEM-2011-S1</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NEEM-2011-S1  ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="IfMtX51tXTZaC1MJGHDR6pc1u6CXUT">
+          <attributeName>Tunu2013</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Tunu2013 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="zAnIOJt1GvboSKZd5CoSVJEDt7yEJH">
+          <attributeName>ACT11d</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the ACT11d ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="0GpHa1ih4ceM1M0q83rTwSkzBCleTk">
+          <attributeName>ACT2</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the ACT2 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="FGaWigmxeRUHoBxbZt1bC8C0e3o5m7">
+          <attributeName>NGT-B19</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NGT-B19 ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="VZTrpCrxzPZ5rQ1gJVyWCAUxJTamaP">
+          <attributeName>Humboldt</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Humboldt ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="4VOqA17L6SXhviTlfKMOqEex5J6l1J">
+          <attributeName>Flade-Isblink</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Flade-Isblink ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="5zUOEUt9pQ7T6BCfLQrhMCqVGLGUUv">
+          <attributeName>Hans-Tausen</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Hans-Tausen ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="3WbZ55r1dvWORnpLGl832TerTshG1R">
+          <attributeName>NasaU</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the NasaU ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="5AN2gRDfCuTdVpOguNMeepZvpvVph8">
+          <attributeName>Akademii-Nauk</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Akademii-Nauk ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="QTET5x11zkMe3gPl0pxq6BSegyp6Sy">
+          <attributeName>Colle_Gnifetti</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Colle_Gnifetti ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="ZhKt6OWuT64k9LWJnrLbkXqHWeqKuT">
+          <attributeName>Upper-Fremont-Glacier</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Upper-Fremont-Glacier ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="4TLa8MOZTa5047K6fkU47tkd2i5pOK">
+          <attributeName>McCall-Glacier</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the McCall-Glacier ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="vC4uxxsiyb4oXSsI423tTqZHTTuOJi">
+          <attributeName>Eclipse</attributeName>
+          <attributeLabel>Annual rBC depositional flux in ug/m2/y at the Eclipse ice core site</attributeLabel>
+          <attributeDefinition>Measured Annual rBC Depositional Flux, ug/m2/y calculated from the annual average rBC concentration multiplied by the annual net water-equivalent accumulation rate</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramPerMeterSquaredPerYear</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>-999.0</code>
+            <codeExplanation>Corresponding ice not available (generally because the core was not long enough to span the entire 1750 to 2010 time period)</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Flux Measurement Type">http://purl.dataone.org/odo/ECSO_00000514</valueURI>
+          </annotation>
+        </attribute>
+      </attributeList>
+    </dataTable>
+    <dataTable id="urn-uuid-e344ea05-6f54-40cd-856d-96263b886078">
+      <entityName>1750_to_2010_global_ice_core_array_references.csv</entityName>
+      <entityDescription>Chronology and rBC references for each ice core.</entityDescription>
+      <physical>
+        <objectName>1750_to_2010_global_ice_core_array_references.csv</objectName>
+        <size unit="bytes">1338</size>
+        <authentication method="MD5">cd0a70e814705b445d2190dcc1bba158</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>
+</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://cn.dataone.org/cn/v2/resolve/urn:uuid:e344ea05-6f54-40cd-856d-96263b886078</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute id="TRdLWDJUnh5V7v0t00MXvI0ner2DEV">
+          <attributeName>Reference Number</attributeName>
+          <attributeLabel>Refers to references numbers in the accompanying array information file</attributeLabel>
+          <attributeDefinition>Refers to references numbers in the accompanying array information file</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Any text</definition>
+                  <pattern>*</pattern>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Identity">http://purl.dataone.org/odo/ECSO_00001157</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="W4ll8blly6ozHVK2XWrWXyJidLk1u1">
+          <attributeName>Reference details</attributeName>
+          <attributeLabel>Reference details including author(s), year published, journal, DOI.</attributeLabel>
+          <attributeDefinition>Reference details including author(s), year published, journal, DOI.</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Any text</definition>
+                  <pattern>*</pattern>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+    </dataTable>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <unitList>
+        <metadata>
+          <unitList>
+            <unit id="microgramPerMeterSquaredPerYear" abbreviation="ug/m2/y" multiplierToSI="0.0000000000000003170979" name="microgramPerMeterSquaredPerYear" parentSI="kilogramPerMeterSquaredPerSecond" unitType="massFlux">
+              <description>micrograms per meter squared per year</description>
+            </unit>
+          </unitList>
+        </metadata>
+      </unitList>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
