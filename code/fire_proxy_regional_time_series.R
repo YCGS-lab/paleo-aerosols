@@ -25,6 +25,8 @@ dir.create(output_dir, recursive = TRUE)
 printOn <- TRUE
 smooth_scar_data <- TRUE
 iceMode <- 'raw'  # Options: 'inversion' or 'raw'
+charSmoothType <- 'narrow' #Options: 'wide' or 'narrow'
+iceSmoothType <- 'all' #Options: 'all' or 'indiv'
 
 text_size_multiplier <- 0.8
 fig_w <- 3
@@ -142,6 +144,87 @@ smooth_ice_core_series <- function(data_list, hw1, hw2, degree = 1, family = "ga
     }
     return(df)
   })
+}
+
+# ------------------------- smooth_ice_core_collection -------------------------- #
+
+# Function to fit a single smooth curve to a collection of z-scored ice core time series
+smooth_ice_core_collection <- function(data_list, hw1, hw2, degree = 1, family = "gaussian") {
+  
+  # Step 1: Pool all data points from all sites
+  all_years <- c()
+  all_values <- c()
+  
+  for(site_name in names(data_list)) {
+    df <- data_list[[site_name]]
+    
+    if(!is.null(df) && "rBC_deposition" %in% names(df)) {
+      # Extract x (year) and y (rBC_deposition - already z-scored)
+      x <- df$year_ce
+      y <- df$rBC_deposition
+      
+      # Remove any NA values
+      valid_idx <- !is.na(x) & !is.na(y)
+      x_valid <- x[valid_idx]
+      y_valid <- y[valid_idx]
+      
+      # Add to pooled data
+      all_years <- c(all_years, x_valid)
+      all_values <- c(all_values, y_valid)
+    }
+  }
+  
+  if(length(all_years) < 3) {
+    warning("Not enough pooled data points for smoothing")
+    return(data_list)
+  }
+  
+  cat("Pooled", length(all_years), "data points from", length(data_list), "sites\n")
+  
+  # Step 2: Fit smoothed curves to the pooled data
+  loc_fit_narrow <- locfit(all_values ~ lp(all_years, deg = degree, h = hw1), family = family)
+  loc_fit_wide <- locfit(all_values ~ lp(all_years, deg = degree, h = hw2), family = family)
+  
+  # Step 3: Create a common time grid for predictions
+  year_range <- range(all_years)
+  common_years <- seq(floor(year_range[1]), ceiling(year_range[2]), by = 1)
+  
+  # Predict smooth curves on common grid
+  smoothed_narrow <- predict(loc_fit_narrow, newdata = data.frame(all_years = common_years))
+  smoothed_wide <- predict(loc_fit_wide, newdata = data.frame(all_years = common_years))
+  
+  # Create a dataframe with the smoothed curves
+  smooth_df <- data.frame(
+    year_ce = common_years,
+    rBC_deposition_smooth1 = smoothed_narrow,
+    rBC_deposition_smooth2 = smoothed_wide
+  )
+  
+  # Step 4: Add smoothed values to each site's dataframe (matching by year)
+  for(site_name in names(data_list)) {
+    df <- data_list[[site_name]]
+    
+    if(!is.null(df) && "rBC_deposition" %in% names(df)) {
+      # Initialize smooth columns
+      df$rBC_deposition_smooth1 <- NA
+      df$rBC_deposition_smooth2 <- NA
+      
+      # Match years and add smooth values
+      for(i in 1:nrow(df)) {
+        year <- df$year_ce[i]
+        match_idx <- which(smooth_df$year_ce == year)
+        
+        if(length(match_idx) > 0) {
+          df$rBC_deposition_smooth1[i] <- smooth_df$rBC_deposition_smooth1[match_idx]
+          df$rBC_deposition_smooth2[i] <- smooth_df$rBC_deposition_smooth2[match_idx]
+        }
+      }
+      
+      data_list[[site_name]] <- df
+    }
+  }
+  
+  return(data_list)
 }
 
 # ----------------------------- plot_timeseries --------------------------------- #
@@ -602,6 +685,292 @@ plot_timeseries <- function(data_list, pltParams,
 }
 
 
+
+# ------------------------- plot_age_range_boxplots ----------------------------- ####
+
+plot_age_range_violins <- function(data_list,
+                                   age_ranges,
+                                   age_var = "year_ce",
+                                   value_vars,
+                                   normalize = TRUE,
+                                   ylab = "Normalized value",
+                                   main_title = NULL,
+                                   save_path = NULL,
+                                   fname_prefix = "age_violin",
+                                   fig_width = 3,
+                                   fig_height = 5,
+                                   violin_color = "#1473CC",
+                                   violin_alpha = 0.6,
+                                   add_jitter = TRUE,
+                                   jitter_color = "black",
+                                   jitter_alpha = 0.3,
+                                   jitter_size = 0.5,
+                                   jitter_amount = 0.1,
+                                   ylims = NULL) {
+  
+  # Load required library
+  if(!require(vioplot)) {
+    install.packages("vioplot")
+    library(vioplot)
+  }
+  
+  # Helper function for min-max normalization (0 to 1)
+  min_max_normalize <- function(x) {
+    x_clean <- x[!is.na(x)]
+    if(length(x_clean) == 0) return(rep(NA, length(x)))
+    min_val <- min(x_clean)
+    max_val <- max(x_clean)
+    if(min_val == max_val) return(rep(0.5, length(x)))
+    return((x - min_val) / (max_val - min_val))
+  }
+  
+  # Create save directory if needed
+  if(!is.null(save_path)) {
+    dir.create(save_path, recursive = TRUE, showWarnings = FALSE)
+  }
+  
+  # Improved check: determine if this is a list of lists or list of dataframes
+  # Check if ALL elements are dataframes (not just the first one)
+  all_are_dataframes <- all(sapply(data_list, is.data.frame))
+  
+  if(all_are_dataframes) {
+    # This is a list of dataframes - each should be a separate group
+    # DON'T wrap them - they're already structured correctly
+    is_single_group <- FALSE
+    cat("Detected list of dataframes - treating each as a separate group\n")
+  } else {
+    # This is a list of lists - each sub-list is a group
+    is_single_group <- FALSE
+    cat("Detected list of lists - treating each sub-list as a group\n")
+  }
+  
+  # Store all summary statistics
+  all_summary_stats <- list()
+  
+  # Process each top-level group separately
+  for(group_name in names(data_list)) {
+    
+    group_data <- data_list[[group_name]]
+    
+    cat("\n=== Processing group:", group_name, "===\n")
+    
+    # For this group, process each age range
+    pooled_data <- list()
+    
+    for(i in 1:nrow(age_ranges)) {
+      range_name <- age_ranges$name[i]
+      range_min <- age_ranges$min[i]
+      range_max <- age_ranges$max[i]
+      range_label <- paste0(range_min, "-", range_max)
+      
+      # Collect all values for this age range from all datasets in this group
+      all_values_in_range <- c()
+      
+      # Handle both cases: group_data is a list of dataframes OR a single dataframe
+      if(is.data.frame(group_data)) {
+        # Single dataframe case (e.g., fire scar or charcoal for one region)
+        datasets_to_process <- list(single = group_data)
+      } else {
+        # List of dataframes case (e.g., multiple ice cores in one region)
+        datasets_to_process <- group_data
+      }
+      
+      for(dataset_name in names(datasets_to_process)) {
+        df <- datasets_to_process[[dataset_name]]
+        
+        # Check if age variable exists
+        if(!age_var %in% names(df)) {
+          warning(paste("Age variable", age_var, "not found in", dataset_name, "of group", group_name))
+          next
+        }
+        
+        # Process each value variable
+        for(value_var in value_vars) {
+          if(!value_var %in% names(df)) {
+            warning(paste("Value variable", value_var, "not found in", dataset_name, "of group", group_name))
+            next
+          }
+          
+          # Extract age and value
+          age <- df[[age_var]]
+          value <- df[[value_var]]
+          
+          # Remove NAs
+          valid_idx <- !is.na(age) & !is.na(value)
+          age_valid <- age[valid_idx]
+          value_valid <- value[valid_idx]
+          
+          if(length(age_valid) == 0) next
+          
+          # Normalize THIS time series separately
+          if(normalize) {
+            value_normalized <- min_max_normalize(value_valid)
+          } else {
+            value_normalized <- value_valid
+          }
+          
+          # Find values in this age range from this normalized time series
+          in_range <- age_valid >= range_min & age_valid <= range_max
+          values_in_range <- value_normalized[in_range]
+          
+          # Add to the pool for this age range
+          if(length(values_in_range) > 0) {
+            all_values_in_range <- c(all_values_in_range, values_in_range)
+          }
+        }
+      }
+      
+      # Store pooled data for this age range
+      if(length(all_values_in_range) > 0) {
+        pooled_data[[range_name]] <- list(
+          values = all_values_in_range,
+          age_range = range_name,
+          range_label = range_label,
+          group_name = group_name
+        )
+      }
+    }
+    
+    if(length(pooled_data) == 0) {
+      warning(paste("No valid data found for group:", group_name))
+      next
+    }
+    
+    # Determine y-limits if not provided (use group-specific or global)
+    if(is.null(ylims)) {
+      all_values <- unlist(lapply(pooled_data, function(x) x$values))
+      current_ylims <- c(min(all_values, na.rm = TRUE) - 0.05, 
+                         max(all_values, na.rm = TRUE) + 0.05)
+    } else {
+      current_ylims <- ylims
+    }
+    
+    # Create a separate figure for each age range in this group
+    for(range_name in names(pooled_data)) {
+      
+      item <- pooled_data[[range_name]]
+      
+      # Get components
+      current_age_range <- item$age_range
+      current_range_label <- item$range_label
+      
+      # Prepare data for single violin
+      plot_data <- list(item$values)
+      plot_label <- current_range_label
+      
+      # Create plot title
+      plot_title <- if(!is.null(main_title)) {
+        paste0(main_title, "\n", group_name, "\n", current_range_label)
+      } else {
+        paste0(group_name, "\n", current_range_label)
+      }
+      
+      # Create filename - always use group_name since we never have single_group anymore
+      plot_filename <- paste0(fname_prefix, "_", group_name, "_", current_age_range, ".png")
+      
+      # Open graphics device if saving
+      if(!is.null(save_path)) {
+        png(file.path(save_path, plot_filename),
+            width = fig_width, height = fig_height, units = "in", res = 300)
+      }
+      
+      # Set up plot margins - increase left margin for y-axis label
+      par(mar = c(4, 5, 4, 2), cex = 0.8)
+      
+      # Create the violin plot without y-axis label
+      # Use adjustcolor to apply alpha to the color
+      fill_color <- adjustcolor(violin_color, alpha.f = violin_alpha)
+      
+      vioplot(plot_data,
+              names = plot_label,
+              col = fill_color,
+              border = violin_color,
+              main = plot_title,
+              ylab = "",  # Remove default y-axis label
+              las = 1,
+              ylim = current_ylims,
+              cex.axis = 0.8,
+              cex.names = 0.8,
+              cex.main = 0.9)
+      
+      # Add y-axis label with more spacing (line = 3.5 instead of default ~2)
+      mtext(ylab, side = 2, line = 3.5, cex = 0.8)
+      
+      # Add jittered points if requested
+      if(add_jitter) {
+        jitter_col <- adjustcolor(jitter_color, alpha.f = jitter_alpha)
+        
+        # Add jitter to x position (centered at 1 since it's a single violin)
+        x_pos <- rep(1, length(plot_data[[1]]))
+        x_jittered <- x_pos + runif(length(x_pos), -jitter_amount, jitter_amount)
+        
+        # Plot points
+        points(x_jittered, plot_data[[1]], 
+               col = jitter_col, 
+               pch = 16, 
+               cex = jitter_size)
+      }
+      
+      # Add grid for readability
+      grid(nx = NA, ny = NULL, col = "gray90", lty = "dotted")
+      
+      # Redraw violin plot on top of grid
+      vioplot(plot_data,
+              names = plot_label,
+              col = fill_color,
+              border = violin_color,
+              las = 1,
+              ylim = current_ylims,
+              cex.axis = 0.8,
+              cex.names = 0.8,
+              add = TRUE)
+      
+      # Re-add jittered points on top
+      if(add_jitter) {
+        jitter_col <- adjustcolor(jitter_color, alpha.f = jitter_alpha)
+        
+        x_pos <- rep(1, length(plot_data[[1]]))
+        x_jittered <- x_pos + runif(length(x_pos), -jitter_amount, jitter_amount)
+        
+        points(x_jittered, plot_data[[1]], 
+               col = jitter_col, 
+               pch = 16, 
+               cex = jitter_size)
+      }
+      
+      # Close graphics device if saving
+      if(!is.null(save_path)) {
+        dev.off()
+        message("Saved violin plot to: ", file.path(save_path, plot_filename))
+      }
+    }
+    
+    # Store summary statistics for this group
+    group_summary <- lapply(names(pooled_data), function(range_name) {
+      item <- pooled_data[[range_name]]
+      data.frame(
+        group = group_name,
+        age_range = item$age_range,
+        range_label = item$range_label,
+        n = length(item$values),
+        mean = mean(item$values, na.rm = TRUE),
+        median = median(item$values, na.rm = TRUE),
+        sd = sd(item$values, na.rm = TRUE),
+        min = min(item$values, na.rm = TRUE),
+        max = max(item$values, na.rm = TRUE)
+      )
+    })
+    
+    all_summary_stats[[group_name]] <- do.call(rbind, group_summary)
+  }
+  
+  # Combine all summary statistics
+  summary_df <- do.call(rbind, all_summary_stats)
+  rownames(summary_df) <- NULL
+  
+  return(summary_df)
+}
+
 # =============================== Load in data ================================ ####
 
 
@@ -650,7 +1019,8 @@ ice_core.data <- ice_core.data %>%
   mutate(across(everything(), ~na_if(., -999)))
 
 # Separate the ice core records into regions 
-ice_core.boreal_west_sites <- c("McCall.Glacier", "Eclipse")
+# ice_core.boreal_west_sites <- c("McCall.Glacier", "Eclipse") # local only
+ice_core.boreal_west_sites <- c("McCall.Glacier", "Eclipse","Humboldt", "NGT.B19", "Tunu2013","Hans.Tausen","NEEM.2011.S1","NasaU", "Summit2010", "D4","ACT2", "ACT11d") #include all of greenland
 ice_core.boreal_east_sites <- c("Humboldt", "NGT.B19", "Tunu2013","Hans.Tausen","NEEM.2011.S1","NasaU", "Summit2010", "D4","ACT2", "ACT11d")
 ice_core.temperate_west_sites <- c("Upper.Fremont.Glacier")
 
@@ -685,34 +1055,58 @@ ice_core.temperate_west_list <- lapply(ice_core.temperate_west_sites, function(s
 })
 names(ice_core.temperate_west_list) <- ice_core.temperate_west_sites
 
-# Apply z-scoring to each region's ice core data
-ice_core.boreal_west_list <- zscore_normalize(ice_core.boreal_west_list)
-ice_core.boreal_east_list <- zscore_normalize(ice_core.boreal_east_list)
-ice_core.temperate_west_list <- zscore_normalize(ice_core.temperate_west_list)
+# # Apply z-scoring to each region's ice core data
+# ice_core.boreal_west_list <- zscore_normalize(ice_core.boreal_west_list)
+# ice_core.boreal_east_list <- zscore_normalize(ice_core.boreal_east_list)
+# ice_core.temperate_west_list <- zscore_normalize(ice_core.temperate_west_list)
 
 # Apply z-scoring to each region's ice core data
 ice_core.boreal_west_list <- zscore_normalize(ice_core.boreal_west_list)
 ice_core.boreal_east_list <- zscore_normalize(ice_core.boreal_east_list)
 ice_core.temperate_west_list <- zscore_normalize(ice_core.temperate_west_list)
 
-# Apply smoothing to each region's ice core data
-ice_core.boreal_west_list <- smooth_ice_core_series(ice_core.boreal_west_list,
-                                                    hw1 = smooth_params$hw1,
-                                                    hw2 = smooth_params$hw2,
-                                                    degree = smooth_params$degree,
-                                                    family = smooth_params$family)
+if(iceSmoothType == 'indiv'){
+  # Apply smoothing to each region's ice core data
+  ice_core.boreal_west_list <- smooth_ice_core_series(ice_core.boreal_west_list,
+                                                      hw1 = smooth_params$hw1,
+                                                      hw2 = smooth_params$hw2,
+                                                      degree = smooth_params$degree,
+                                                      family = smooth_params$family)
+  
+  ice_core.boreal_east_list <- smooth_ice_core_series(ice_core.boreal_east_list,
+                                                      hw1 = smooth_params$hw1,
+                                                      hw2 = smooth_params$hw2,
+                                                      degree = smooth_params$degree,
+                                                      family = smooth_params$family)
+  
+  ice_core.temperate_west_list <- smooth_ice_core_series(ice_core.temperate_west_list,
+                                                         hw1 = smooth_params$hw1,
+                                                         hw2 = smooth_params$hw2,
+                                                         degree = smooth_params$degree,
+                                                         family = smooth_params$family)
+} else if(iceSmoothType == 'all'){
+  # Apply smoothing to POOLED data from each region (fit one curve per region)
+  ice_core.boreal_west_list <- smooth_ice_core_collection(ice_core.boreal_west_list,
+                                                          hw1 = smooth_params$hw1,
+                                                          hw2 = smooth_params$hw2,
+                                                          degree = smooth_params$degree,
+                                                          family = smooth_params$family)
+  
+  cat("\n=== Smoothing Boreal East ===\n")
+  ice_core.boreal_east_list <- smooth_ice_core_collection(ice_core.boreal_east_list,
+                                                          hw1 = smooth_params$hw1,
+                                                          hw2 = smooth_params$hw2,
+                                                          degree = smooth_params$degree,
+                                                          family = smooth_params$family)
+  
+  cat("\n=== Smoothing Temperate West ===\n")
+  ice_core.temperate_west_list <- smooth_ice_core_collection(ice_core.temperate_west_list,
+                                                             hw1 = smooth_params$hw1,
+                                                             hw2 = smooth_params$hw2,
+                                                             degree = smooth_params$degree,
+                                                             family = smooth_params$family)
+}
 
-ice_core.boreal_east_list <- smooth_ice_core_series(ice_core.boreal_east_list,
-                                                    hw1 = smooth_params$hw1,
-                                                    hw2 = smooth_params$hw2,
-                                                    degree = smooth_params$degree,
-                                                    family = smooth_params$family)
-
-ice_core.temperate_west_list <- smooth_ice_core_series(ice_core.temperate_west_list,
-                                                       hw1 = smooth_params$hw1,
-                                                       hw2 = smooth_params$hw2,
-                                                       degree = smooth_params$degree,
-                                                       family = smooth_params$family)
 
 # ------------------------- Load in the burn scar data --------------------------- #
 
@@ -725,6 +1119,20 @@ scar.list <- list(boreal_west = scar.boreal_west,
                   boreal_east = scar.boreal_east,
                   temperate_west = scar.temperate_west,
                   temperate_east = scar.temperate_east)
+
+# ------------------- Load in the charcoal synthesis curves ---------------------- #
+
+if(charSmoothType == 'wide'){
+  char.boreal_west = read.csv(file.path(data_dir, 'AERO_NAgfed_Boreal_west_PI_particle_wide_zscore.csv'), header = TRUE)
+  char.boreal_east = read.csv(file.path(data_dir, 'AERO_NAgfed_Boreal_east_PI_particle_wide_zscore.csv'), header = TRUE)
+  char.temp_west = read.csv(file.path(data_dir, 'AERO_NAgfed_Temperate_west_PI_particle_wide_zscore.csv'), header = TRUE)
+  char.temp_east = read.csv(file.path(data_dir, 'AERO_NAgfed_Temperate_east_PI_particle_wide_zscore.csv'), header = TRUE)
+} else if(charSmoothType == 'narrow'){
+  char.boreal_west = read.csv(file.path(data_dir, 'AERO_NAgfed_Boreal_west_PI_particle_narrow_zscore.csv'), header = TRUE)
+  char.boreal_east = read.csv(file.path(data_dir, 'AERO_NAgfed_Boreal_east_PI_particle_narrow_zscore.csv'), header = TRUE)
+  char.temp_west = read.csv(file.path(data_dir, 'AERO_NAgfed_Temperate_west_PI_particle_narrow_zscore.csv'), header = TRUE)
+  char.temp_east = read.csv(file.path(data_dir, 'AERO_NAgfed_Temperate_east_PI_particle_narrow_zscore.csv'), header = TRUE)
+}
 
 
 # ======================= Create master list of lists ========================= ####
@@ -837,7 +1245,9 @@ pltParams.specific <- list(
         row.names = c("Total.NA")
       )
     ),
-    single_color = "#479EEB",
+    # single_color = "#479EEB",
+    single_color = "#5D2E8C",
+    # single_color = "#D4DFC7",
     ylims = list(
       Boreal.NA.East = c(0, 0.07),
       Boreal.NA.West = c(0, 0.1),
@@ -1169,5 +1579,102 @@ for(dataset_type in names(data.full.list)) {
     }
   }
 }
+
+
+#### Create comparison box plots 
+
+# Example usage:
+# Define age ranges
+age_ranges <- data.frame(
+  name = c("Pre-industrial (1750-1780)", "Present day (1997-2010)"),
+  min = c(1750, 1997),
+  max = c(1780, 2010)
+)
+
+# Example usage 3: Multiple lists of lists (e.g., multiple ice core regions)
+summary_stats_ice_all <- plot_age_range_violins(
+  data_list = list(
+    boreal_west = ice_core.boreal_west_list,  # List of 2 ice cores
+    boreal_east = ice_core.boreal_east_list,   # List of 10 ice cores
+    temp_west = ice_core.temperate_west_list
+  ),
+  age_ranges = age_ranges,
+  age_var = "year_ce",
+  value_vars = c("rBC_deposition"),
+  normalize = TRUE,
+  ylab = "Normalized rBC deposition (0-1)",
+  main_title = "Ice Core Data",
+  save_path = output_dir,
+  fname_prefix = "ice_core_violin",
+  fig_width = 2.5,
+  fig_height = 5,
+  violin_color = "#1473CC",
+  violin_alpha = 0.5,
+  add_jitter = TRUE,
+  jitter_color = "black",
+  jitter_alpha = 0.4,
+  jitter_size = 0.8,
+  jitter_amount = 0.15,
+  ylims = c(0, 1)
+)
+
+print(summary_stats_ice_all)
+
+
+summary_stats_scar <- plot_age_range_violins(
+  data_list = list(boreal_west = scar.boreal_west,  # Each is a single dataframe
+                   boreal_east = scar.boreal_east,
+                   temp_west = scar.temperate_west,
+                   temp_east = scar.temperate_east),
+  age_ranges = age_ranges,
+  age_var = "year_ce",
+  value_vars = c("percent_scarred"),
+  normalize = TRUE,
+  ylab = "Normalized % sites scarred (0-1)",
+  main_title = "Fire Scar Data",
+  save_path = output_dir,
+  fname_prefix = "fire_scar_violin",
+  fig_width = 2.5,
+  fig_height = 5,
+  violin_color = "#3C7C4F",
+  violin_alpha = 0.5,
+  add_jitter = TRUE,
+  jitter_color = "darkgreen",
+  jitter_alpha = 0.5,
+  jitter_size = 1.0,
+  jitter_amount = 0.12,
+  ylims = c(0, 1)
+)
+
+print(summary_stats_scar)
+
+summary_stats_char <- plot_age_range_violins(
+  data_list = list(boreal_west = char.boreal_west,  # Each is a single dataframe
+                   boreal_east = char.boreal_east,
+                   temp_west = char.temp_west,
+                   temp_east = char.temp_east),
+  age_ranges = age_ranges,
+  age_var = "year_ce",
+  value_vars = c("fit_zscore"),
+  normalize = TRUE,
+  ylab = "Normalized charcoal influx z-score (0-1)",
+  main_title = "Sedimentary Charcoal Data",
+  save_path = output_dir,
+  fname_prefix = "char_violin",
+  fig_width = 2.5,
+  fig_height = 5,
+  violin_color = "#7B6868",
+  violin_alpha = 0.5,
+  add_jitter = TRUE,
+  jitter_color = "black",
+  jitter_alpha = 0.5,
+  jitter_size = 1.0,
+  jitter_amount = 0.12,
+  ylims = c(0, 1)
+)
+
+print(summary_stats_char)
+
+
 
 
