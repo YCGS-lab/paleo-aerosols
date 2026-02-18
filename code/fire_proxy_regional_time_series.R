@@ -22,8 +22,7 @@ output_dir <- file.path(base_dir, "output/working_fig_pieces")
 dir.create(output_dir, recursive = TRUE)
 
 # ================================= Switches ================================== ####
-printOn <- FALSE
-saveOn <- FALSE
+printOn <- TRUE
 smooth_scar_data <- TRUE
 iceMode <- 'raw'  # Options: 'inversion' or 'raw'
 

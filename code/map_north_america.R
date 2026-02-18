@@ -7,7 +7,7 @@
 rm(list = ls(all.names = TRUE))
 cat("\014")
 
-printOn <- FALSE
+printOn <- TRUE
 
 library(tidyverse)
 library(sf)
@@ -47,7 +47,11 @@ nafss <- read_csv(file.path(data_dir, "NAFSS_Master_Metadata_V1.1.9000 - NAFSS_M
                   show_col_types = FALSE)
 
 # Load in the list of sites included in the PI-PD comparison
+fscar_sites <- read.csv(file.path(data_dir, "2026_AerosolMap_Meta.csv"), header = TRUE)
 
+# Add new variable to nafss to indicate if in PIPD 
+nafss <- nafss %>% 
+  mutate(PIPD_data = if_else(ID %in% fscar_sites$ID, TRUE, FALSE))
 
 # Get the primary (most common) fire_proxy for each NA entity
 entity_fire_proxy <- na_data %>%
@@ -344,114 +348,26 @@ if(printOn){
 # Create second map with NASEM fire scar data
 # =============================================================================
 
-# Create proxy levels for second map (with NASEM)
-# proxy_levels_p2 <- c(
-#   paste0("Sedimentary charcoal (n=", nrow(entity_sf), ")"),
-#   paste0("Fire scar (n=", nrow(nafss_sf), ")"),
-#   paste0("Ice core (n=", nrow(ice_sf), ")")
-# )
-proxy_levels_p2 <- c(
-  paste0("Sedimentary charcoal with PIPD (n=", sum(entity_sf$PIPD_data), ")"),
-  paste0("Sedimentary charcoal without PIPD (n=", sum(!entity_sf$PIPD_data), ")"),
-  paste0("Fire scar (n=", nrow(nafss_sf), ")"),
-  paste0("Ice core (n=", nrow(ice_sf), ")")
-)
-# 
-# p2 <- ggplot() +
-#   # Basemap
-#   geom_sf(data = north_america, fill = "gray90", color = "white", linewidth = 0.3) +
-#   
-#   # Lakes
-#   geom_sf(data = lakes, fill = "lightblue", color = "lightblue", linewidth = 0.1) +
-#   
-#   # Add the four bounding polygons
-#   geom_sf(data = canada_alaska_west, fill = NA, color = "#B8A38E", linewidth = 1) +
-#   geom_sf(data = canada_alaska_east, fill = NA, color = "#B2A9A9", linewidth = 1) +
-#   geom_sf(data = conus_west, fill = NA, color = "#A6B5A6", linewidth = 1) +
-#   geom_sf(data = conus_east, fill = NA, color = "#A4B0C1", linewidth = 1) +
-#   
-#   # NASEM fire scar points (small green squares)
-#   geom_sf(data = nafss_sf,
-#           aes(fill = proxy_type, shape = proxy_type),
-#           color = "darkgreen", size = 1.5, alpha = 0.6, stroke = 0.3) +
-#   # FPD Entity points (circles)
-#   geom_sf(data = entity_sf,
-#           aes(fill = proxy_type, shape = proxy_type),
-#           color = "black", size = 2.5, alpha = 0.75, stroke = 0.75) +
-#   # Ice core points (triangles)
-#   geom_sf(data = ice_sf,
-#           aes(fill = proxy_type, shape = proxy_type),
-#           color = "black", size = 4, stroke = 1) +
-# 
-#   # Ice core labels
-#   geom_text_repel(data = zhang_ice_projected,
-#                   aes(x = x, y = y, label = SiteID),
-#                   size = 2.8, fontface = "bold",
-#                   color = "black",
-#                   bg.color = "white", bg.r = 0.1,
-#                   box.padding = 0.4,
-#                   point.padding = 0.3,
-#                   segment.color = "gray50",
-#                   segment.size = 0.3,
-#                   max.overlaps = 20,
-#                   min.segment.length = 0) +
-#   # Unified scales
-#   # scale_fill_manual(
-#   #   # values = c("#1f77b4", "green", "yellow"),
-#     # values = c("#7B6868", "#3C7C4F", "#479EEB"),
-#   #   breaks = proxy_levels_p2,
-#   #   name = "Fire proxies"
-#   # ) +
-#   # scale_shape_manual(
-#   #   values = c(21, 22, 24),
-#   #   breaks = proxy_levels_p2,
-#   #   name = "Fire proxies"
-#   # ) +
-#   scale_fill_manual(
-#     values = c("#7B6868", "#7B6868", "#3C7C4F", "#479EEB"),  # Same fill for both charcoal types
-#     breaks = proxy_levels_p2,
-#     name = "Fire proxies"
-#   ) +
-#     scale_color_manual(
-#       values = c("#7B6868", "black", "#3C7C4F", "#479EEB"),  # Different outline: black for PIPD, red for non-PIPD
-#       breaks = proxy_levels_p2,
-#       name = "Fire proxies"
-#   ) +
-#   scale_shape_manual(
-#     values = c(21, 21, 22, 24),  # circles for both charcoal, square for fire scar, triangle for ice
-#     breaks = proxy_levels_p2,
-#     name = "Fire proxies"
-#   ) +
-#   # Use Albers Equal Area projection with limits to zoom in on continent
-#   coord_sf(crs = albers_na,
-#            xlim = c(-4500000, 3500000),
-#            ylim = c(-1500000, 7400000),
-#            expand = FALSE) +
-#   # Theme
-#   theme_minimal() +
-#   theme(
-#     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-#     plot.subtitle = element_text(size = 11, hjust = 0.5, color = "gray40"),
-#     # legend.position = "right",
-#     legend.position = c(0.5, 0.95),
-#     legend.justification = c(0.5, 1),
-#     legend.background = element_rect(fill = NA, color = NA),
-#     legend.title = element_text(face = "bold"),
-#     panel.grid.major = element_line(color = "gray90", linewidth = 0.2),
-#     panel.background = element_rect(fill = "white", color = NA),
-#     plot.margin = margin(10, 10, 10, 10)
-#   ) +
-#   guides(fill = guide_legend(override.aes = list(size = 4, alpha = 1), ncol = 1),
-#          shape = guide_legend(override.aes = list(size = 4, alpha = 1), ncol = 1)) +
-#   labs(
-#     # title = "Fire Scar, Paleofire, & Ice Core Data",
-#     # subtitle = paste0("Sedimentary charcoal: ", nrow(entity_sf), " (Harrison et al. 2022) | ",
-#     #                   "Fire scars: ", nrow(nafss_sf), " (NASEM) | ",
-#     #                   "Ice cores (Zhang et al. 2024)"),
-#     x = NULL,
-#     y = NULL
-#   )
+# Create modified proxy_type to distinguish PIPD status for both charcoal and fire scar
+entity_sf <- entity_sf %>%
+  mutate(proxy_type_legend = if_else(PIPD_data, 
+                                     "Sedimentary charcoal with PIPD",
+                                     "Sedimentary charcoal without PIPD"))
 
+nafss_sf <- nafss_sf %>%
+  mutate(proxy_type_legend = if_else(PIPD_data,
+                                     "Fire scar with PIPD",
+                                     "Fire scar without PIPD"))
+
+ice_sf <- ice_sf %>%
+  mutate(proxy_type_legend = "Ice core")  # Explicitly set to "Ice core"
+
+# Create proxy levels for second map (with NASEM)
+proxy_levels_p2 <- c(
+  paste0("Sedimentary charcoal (PIPD n = ", sum(entity_sf$PIPD_data), "; other n = ", sum(!entity_sf$PIPD_data) ,")"),
+  paste0("Fire scar (PIPD n = ", sum(nafss_sf$PIPD_data), "; other n = ", sum(!nafss_sf$PIPD_data),")"),
+  paste0("Ice core (n = ", nrow(ice_sf), ")")
+)
 
 p2 <- ggplot() +
   # Basemap
@@ -466,18 +382,30 @@ p2 <- ggplot() +
   geom_sf(data = conus_west, fill = NA, color = "#A6B5A6", linewidth = 1) +
   geom_sf(data = conus_east, fill = NA, color = "#A4B0C1", linewidth = 1) +
   
-  # NASEM fire scar points (small green squares)
-  geom_sf(data = nafss_sf,
-          aes(fill = proxy_type, shape = proxy_type, color = proxy_type),  # Add color to aes
-          size = 1.5, alpha = 0.6, stroke = 0.8) +  # Remove hardcoded color, increase stroke
-  # FPD Entity points (circles)
-  geom_sf(data = entity_sf,
-          aes(fill = proxy_type, shape = proxy_type, color = proxy_type),  # Add color to aes
-          size = 2.5, alpha = 0.75, stroke = 0.8) +  # Remove hardcoded color, increase stroke
+  # FPD charcoal points (circles)
+  # First layer: sites WITHOUT PIPD data
+  geom_sf(data = entity_sf %>% filter(!PIPD_data),
+          aes(fill = proxy_type_legend, shape = proxy_type_legend, color = NA),
+          size = 1.5, alpha = 0.2, stroke = 0.6) +
+  # Second layer: sites WITH PIPD data (black border)
+  geom_sf(data = entity_sf %>% filter(PIPD_data),
+          aes(fill = proxy_type_legend, shape = proxy_type_legend, color = proxy_type_legend),
+          size = 1.5, alpha = 0.6, stroke = 0.6) +
+  
+  # NASEM fire scar points (squares)
+  # First layer: sites WITHOUT PIPD data
+  geom_sf(data = nafss_sf %>% filter(!PIPD_data),
+          aes(fill = proxy_type_legend, shape = proxy_type_legend, color = NA),
+          size = 1.5, alpha = 0.2, stroke = 0.6) +
+  # Second layer: sites WITH PIPD data (black border)
+  geom_sf(data = nafss_sf %>% filter(PIPD_data),
+          aes(fill = proxy_type_legend, shape = proxy_type_legend, color = proxy_type_legend),
+          size = 1.5, alpha = 0.6, stroke = 0.6) +
+  
   # Ice core points (triangles)
   geom_sf(data = ice_sf,
-          aes(fill = proxy_type, shape = proxy_type, color = proxy_type),  # Add color to aes
-          size = 4, stroke = 1) +  # Remove hardcoded color
+          aes(fill = proxy_type_legend, shape = proxy_type_legend, color = proxy_type_legend),
+          size = 3, stroke = 1) +
   
   # Ice core labels
   geom_text_repel(data = zhang_ice_projected,
@@ -491,27 +419,45 @@ p2 <- ggplot() +
                   segment.size = 0.3,
                   max.overlaps = 20,
                   min.segment.length = 0) +
-  # Unified scales
+  
+  # Unified scales - 5 categories defined, but only 3 shown in legend
   scale_fill_manual(
-    values = c("#7B6868", "#7B6868", "#3C7C4F", "#479EEB"),  # Same fill for both charcoal types
-    breaks = proxy_levels_p2,
+    values = c("Sedimentary charcoal with PIPD" = "#7B6868",
+               "Sedimentary charcoal without PIPD" = "#7B6868",
+               "Fire scar with PIPD" = "#3C7C4F",
+               "Fire scar without PIPD" = "#3C7C4F",
+               "Ice core" = "#479EEB"),
+    breaks = c("Sedimentary charcoal with PIPD", "Fire scar with PIPD", "Ice core"),  # Only 3 breaks
+    labels = proxy_levels_p2,
     name = "Fire proxies"
   ) +
   scale_color_manual(
-    values = c("black", "#7B6868", "#3C7C4F", "#479EEB"),  # Different outline colors
-    breaks = proxy_levels_p2,
+    values = c("Sedimentary charcoal with PIPD" = "black",
+               "Sedimentary charcoal without PIPD" = "#7B6868",
+               "Fire scar with PIPD" = "black",
+               "Fire scar without PIPD" = "#3C7C4F",
+               "Ice core" = "black"),
+    breaks = c("Sedimentary charcoal with PIPD", "Fire scar with PIPD", "Ice core"),  # Only 3 breaks
+    labels = proxy_levels_p2,
     name = "Fire proxies"
   ) +
   scale_shape_manual(
-    values = c(21, 21, 22, 24),  # circles for both charcoal, square for fire scar, triangle for ice
-    breaks = proxy_levels_p2,
+    values = c("Sedimentary charcoal with PIPD" = 21,
+               "Sedimentary charcoal without PIPD" = 21,
+               "Fire scar with PIPD" = 22,
+               "Fire scar without PIPD" = 22,
+               "Ice core" = 24),
+    breaks = c("Sedimentary charcoal with PIPD", "Fire scar with PIPD", "Ice core"),  # Only 3 breaks
+    labels = proxy_levels_p2,
     name = "Fire proxies"
   ) +
+  
   # Use Albers Equal Area projection with limits to zoom in on continent
   coord_sf(crs = albers_na,
            xlim = c(-4500000, 3500000),
            ylim = c(-1500000, 7400000),
            expand = FALSE) +
+  
   # Theme
   theme_minimal() +
   theme(
@@ -525,15 +471,14 @@ p2 <- ggplot() +
     panel.background = element_rect(fill = "white", color = NA),
     plot.margin = margin(10, 10, 10, 10)
   ) +
+  
   guides(
-    fill = guide_legend(override.aes = list(size = 4, alpha = 1), ncol = 1),
-    color = guide_legend(override.aes = list(size = 4, alpha = 1), ncol = 1),
-    shape = guide_legend(override.aes = list(size = 4, alpha = 1), ncol = 1)
+    fill = guide_legend(override.aes = list(size = 3, alpha = 1), ncol = 1),
+    color = guide_legend(override.aes = list(size = 3, alpha = 1), ncol = 1),
+    shape = guide_legend(override.aes = list(size = 3, alpha = 1), ncol = 1)
   ) +
-  labs(
-    x = NULL,
-    y = NULL
-  )
+  
+  labs(x = NULL, y = NULL)
 
 print(p2)
 
